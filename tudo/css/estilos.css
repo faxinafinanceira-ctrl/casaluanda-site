@@ -175,4 +175,109 @@ body.preloader-active {
         0 0 350px rgba(255,240,200,0.7));
 }
 
+/* ==========================================================================
+   Controle de Navegação Mobile (Hero Lock & Reveal)
+   Bloqueio e liberação exclusiva para dispositivos móveis via classe mobile
+   ========================================================================== */
+body.is-mobile-locked {
+    overflow: hidden !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    touch-action: pan-x;
+}
+
+body.is-mobile-locked #ultimos-eventos,
+body.is-mobile-locked .eventos-section {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Botão Seta para Baixo (Exclusivo Mobile) */
+.hero-scroll-btn {
+    display: none; /* Desktop sempre oculto */
+    position: absolute;
+    bottom: 2.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.75rem;
+    pointer-events: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--hero-btn-fade-duration, 0.8s) ease, transform 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body.is-mobile-device .hero-scroll-btn,
+body.is-mobile-locked .hero-scroll-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-scroll-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    animation: heroArrowBounce 2s ease-in-out infinite;
+}
+
+.hero-scroll-btn.no-bounce {
+    animation: none !important;
+}
+
+.hero-scroll-btn.is-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    animation: none !important;
+}
+
+.hero-scroll-btn img,
+.hero-scroll-btn svg {
+    width: 38px;
+    height: 38px;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(241, 228, 198, 0.5)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7));
+    transition: transform 0.2s ease;
+}
+
+.hero-scroll-btn:active img,
+.hero-scroll-btn:active svg {
+    transform: scale(0.90);
+}
+
+@keyframes heroArrowBounce {
+    0%, 100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, 10px);
+    }
+}
+
+/* Proteção estrita do Desktop: nunca aplica travas nem exibe elementos mobile */
+@media (min-width: 1025px) {
+    .hero-scroll-btn {
+        display: none !important;
+    }
+    body.is-mobile-locked {
+        overflow: auto !important;
+        height: auto !important;
+    }
+    body.is-mobile-locked #ultimos-eventos,
+    body.is-mobile-locked .eventos-section {
+        display: flex !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+}
+
+
 

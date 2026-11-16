@@ -1,4 +1,41 @@
 // ============================================================
+// DETECÇÃO DE CAPACIDADES DO DISPOSITIVO (device-detect.js)
+// ============================================================
+function isMobileDevice() {
+  const hasTouch =
+    ('maxTouchPoints' in navigator && navigator.maxTouchPoints > 0) ||
+    ('msMaxTouchPoints' in navigator && navigator.msMaxTouchPoints > 0);
+
+  const pointerCoarse = window.matchMedia('(pointer: coarse)').matches;
+  const hoverNone = window.matchMedia('(hover: none)').matches;
+  const bp = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation && typeof window.APP_CONFIG.mobileNavigation.breakpointWidth === 'number')
+    ? window.APP_CONFIG.mobileNavigation.breakpointWidth
+    : 1024;
+  const mobileWidth = window.innerWidth <= bp;
+
+  return hasTouch && (pointerCoarse || hoverNone) && mobileWidth;
+}
+window.isMobileDevice = isMobileDevice;
+
+// Aplicação imediata do estado de bloqueio no ciclo de vida da página para mobile
+(function applyInitialMobileLock() {
+  if (typeof isMobileDevice === 'function' && isMobileDevice()) {
+    const applyClass = () => {
+      const isEnabled = !(window.APP_CONFIG && window.APP_CONFIG.mobileNavigation && window.APP_CONFIG.mobileNavigation.enabled === false);
+      if (isEnabled && !window.__isMobileUnlocked) {
+        document.body.classList.add('is-mobile-device', 'is-mobile-locked');
+        window.scrollTo(0, 0);
+      }
+    };
+    if (document.body) {
+      applyClass();
+    } else {
+      document.addEventListener('DOMContentLoaded', applyClass);
+    }
+  }
+})();
+
+// ============================================================
 // CONFIGURAÇÕES GERAIS
 // ============================================================
 const CONFIG = {
@@ -80,7 +117,7 @@ function uploadUniforms(gl, program, elapsed) {
   // Desativa o ruído de grão ao rolar até a seção de eventos e altera a opacidade do #glCanvas
   const evSec = document.getElementById('ultimos-eventos') || document.querySelector('.eventos-section');
   let currentGrain = SHADER_PARAMS.uGrainIntensity;
-  if (evSec) {
+  if (evSec && evSec.offsetHeight > 0 && !document.body.classList.contains('is-mobile-locked')) {
     const rect = evSec.getBoundingClientRect();
     const glCanvasEl = document.getElementById('glCanvas');
     if (rect.top <= 0) {
@@ -88,6 +125,11 @@ function uploadUniforms(gl, program, elapsed) {
       if (glCanvasEl) glCanvasEl.style.opacity = '0';
     } else {
       if (glCanvasEl) glCanvasEl.style.opacity = '1';
+    }
+  } else {
+    const glCanvasEl = document.getElementById('glCanvas');
+    if (glCanvasEl && !glCanvasEl.style.opacity) {
+      glCanvasEl.style.opacity = '1';
     }
   }
   gl.uniform1f(uGrainIntensity, currentGrain);
@@ -508,8 +550,10 @@ function initEventosWebGL() {
 
   function resizeEv() {
     const parent = evCanvas.parentElement;
-    const w = parent ? parent.clientWidth : window.innerWidth;
-    const h = parent ? parent.clientHeight : window.innerHeight;
+    const parentW = parent ? parent.clientWidth : 0;
+    const parentH = parent ? parent.clientHeight : 0;
+    const w = parentW > 0 ? parentW : window.innerWidth;
+    const h = parentH > 0 ? parentH : window.innerHeight;
     if (evCanvas.width !== w || evCanvas.height !== h) {
       evCanvas.width = w;
       evCanvas.height = h;
@@ -573,4 +617,129 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initEventosWebGL);
 } else {
   initEventosWebGL();
+}
+
+// ============================================================
+// NAVEGAÇÃO EXCLUSIVA MOBILE (Hero Lock, Reveal & Smooth Scroll)
+// ============================================================
+function initMobileNavigation() {
+  if (!isMobileDevice()) {
+    // Desktop: assegura que o botão mobile permaneça totalmente oculto
+    const btn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
+    if (btn) btn.style.display = 'none';
+    return;
+  }
+
+  const navConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
+  if (navConfig.enabled === false) return;
+
+  // Garante a existência do botão no DOM
+  let btn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
+  if (!btn) {
+    const hero = document.getElementById('hero');
+    if (hero) {
+      btn = document.createElement('button');
+      btn.id = 'heroScrollBtn';
+      btn.className = 'hero-scroll-btn';
+      btn.setAttribute('aria-label', 'Ver últimos eventos');
+      btn.innerHTML = '<img data-img="setaAbaixo" src="tudo/obts/setaparabaixo.svg" alt="Rolar para baixo">';
+      hero.appendChild(btn);
+    }
+  }
+
+  // Gerenciamento do evento de toque/clique no botão da seta
+  if (btn && !btn._hasMobileNavHandler) {
+    btn._hasMobileNavHandler = true;
+
+    const handleUnlock = (e) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      unlockMobileNavigation();
+    };
+
+    btn.addEventListener('click', handleUnlock);
+    btn.addEventListener('touchend', handleUnlock, { passive: false });
+  }
+
+  // Revela o botão somente quando a experiência inicial da Hero for concluída
+  function revealScrollButton() {
+    if (!isMobileDevice() || window.__isMobileUnlocked) return;
+    const currentNavConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
+    if (currentNavConfig.enabled === false) return;
+
+    const delay = currentNavConfig.buttonFadeDelayMs ?? 400;
+    const duration = currentNavConfig.buttonFadeDurationMs ?? 800;
+    const bounce = currentNavConfig.bounceAnimation !== false;
+
+    setTimeout(() => {
+      if (window.__isMobileUnlocked) return;
+      const scrollBtn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
+      if (scrollBtn) {
+        scrollBtn.style.setProperty('--hero-btn-fade-duration', `${duration}ms`);
+        if (!bounce) {
+          scrollBtn.classList.add('no-bounce');
+        } else {
+          scrollBtn.classList.remove('no-bounce');
+        }
+        scrollBtn.classList.remove('is-hidden');
+        scrollBtn.classList.add('is-visible');
+      }
+    }, delay);
+  }
+
+  if (window.__heroExperienceFinished) {
+    revealScrollButton();
+  } else {
+    window.addEventListener('heroExperienceFinished', revealScrollButton, { once: true });
+    // Contingência: se o evento de término da Hero não for disparado em até 4.5s
+    setTimeout(() => {
+      if (!window.__heroExperienceFinished && !window.__isMobileUnlocked) {
+        revealScrollButton();
+      }
+    }, 4500);
+  }
+}
+
+/**
+ * Liberação definitiva do restante do documento e rolagem suave até Últimos Eventos
+ */
+function unlockMobileNavigation() {
+  if (window.__isMobileUnlocked) return;
+  window.__isMobileUnlocked = true;
+
+  const btn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
+  if (btn) {
+    btn.classList.remove('is-visible');
+    btn.classList.add('is-hidden');
+  }
+
+  // Liberação definitiva do documento
+  document.body.classList.remove('is-mobile-locked');
+  document.body.classList.add('is-mobile-unlocked');
+
+  const evSection = document.getElementById('ultimos-eventos') || document.querySelector('.eventos-section');
+  if (!evSection) return;
+
+  // Notifica o recálculo dos elementos WebGL e carrosséis após revelar a seção
+  window.dispatchEvent(new Event('resize'));
+  if (typeof renderEventos === 'function') {
+    renderEventos();
+  }
+
+  // Executa rolagem suave após dois frames de animação (garante que o reflow do DOM terminou)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const currentNavConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
+      const scrollBehavior = currentNavConfig.scrollBehavior || 'smooth';
+      evSection.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMobileNavigation);
+} else {
+  initMobileNavigation();
 }

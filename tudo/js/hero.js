@@ -104,7 +104,7 @@
       const jsonRes = await fetch("config/panel.config.JSON" + cb, { cache: "no-store" });
       if (jsonRes.ok) {
         const jsonText = await jsonRes.text();
-        jsonConfig = JSON.parse(jsonText.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, ""));
+        jsonConfig = JSON.parse(jsonText.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, "").replace(/,\s*([\]}])/g, '$1'));
         const lm = jsonRes.headers.get("Last-Modified");
         if (lm) jsonTime = new Date(lm).getTime();
       }
@@ -165,6 +165,8 @@
           heroTitleElement.style.transition = "none";
           initScrollIntegration();
         }
+        window.__heroExperienceFinished = true;
+        window.dispatchEvent(new CustomEvent("heroExperienceFinished"));
       }, duration);
     }, delay);
   }

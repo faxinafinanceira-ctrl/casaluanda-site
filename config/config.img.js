@@ -15,6 +15,11 @@ const configImg = {
       link: "",
       alt: ""
     },
+    setaAbaixo: {
+      caminho: "tudo/obts/setaparabaixo.svg",
+      link: "",
+      alt: "Rolar para o conteúdo"
+    },
     cartazes: [
       {
         caminho: "tudo/obts/indice1.jpg",

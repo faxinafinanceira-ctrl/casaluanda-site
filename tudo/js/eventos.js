@@ -149,7 +149,7 @@ async function loadEventosConfiguration() {
             const resJson = await fetch("config/panel.config.JSON" + cb, { cache: "no-store" });
             if (resJson.ok) {
                 const text = await resJson.text();
-                jsonConfig = JSON.parse(text.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, ""));
+                jsonConfig = JSON.parse(text.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, "").replace(/,\s*([\]}])/g, '$1'));
                 const lm = resJson.headers.get("Last-Modified");
                 if (lm) jsonTime = new Date(lm).getTime();
             }
