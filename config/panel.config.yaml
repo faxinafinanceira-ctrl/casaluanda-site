@@ -35,12 +35,6 @@ mobileNavigation:
   # Largura máxima de tela em pixels para classificar o dispositivo como mobile nos testes de capacidade
   breakpointWidth: 1024
 
-  # Altura em unidades 'vh' da seção Hero em dispositivos móveis para permitir a rolagem livre por toda a extensão da imagem antes da seção de eventos
-  heroScrollHeightVh: 175
-
-  # Distância em pixels antes do final da Hero para considerar que o usuário atingiu a parte inferior e destacar a seta
-  bottomThresholdPx: 120
-
   # Tempo de espera em milissegundos após o término da experiência inicial da Hero para exibir o botão da seta para baixo
   buttonFadeDelayMs: 400
 

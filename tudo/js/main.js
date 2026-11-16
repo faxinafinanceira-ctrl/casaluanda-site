@@ -633,13 +633,6 @@ function initMobileNavigation() {
   const navConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
   if (navConfig.enabled === false) return;
 
-  // Aplica a variável de altura da Hero no mobile
-  const heroHeightVh = navConfig.heroScrollHeightVh || 175;
-  document.documentElement.style.setProperty('--hero-mobile-height', `${heroHeightVh}vh`);
-
-  // Dispara redimensionamento para sincronizar o tamanho do canvas com a altura estendida da Hero
-  window.dispatchEvent(new Event('resize'));
-
   // Garante a existência do botão no DOM
   let btn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
   if (!btn) {
@@ -670,69 +663,43 @@ function initMobileNavigation() {
     btn.addEventListener('touchend', handleUnlock, { passive: false });
   }
 
-  // Revela o botão com animação e visibilidade
+  // Revela o botão somente quando a experiência inicial da Hero for concluída
   function revealScrollButton() {
     if (!isMobileDevice() || window.__isMobileUnlocked) return;
     const currentNavConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
     if (currentNavConfig.enabled === false) return;
 
+    const delay = currentNavConfig.buttonFadeDelayMs ?? 400;
     const duration = currentNavConfig.buttonFadeDurationMs ?? 800;
     const bounce = currentNavConfig.bounceAnimation !== false;
 
-    const scrollBtn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
-    if (scrollBtn && !scrollBtn.classList.contains('is-hidden')) {
-      scrollBtn.style.setProperty('--hero-btn-fade-duration', `${duration}ms`);
-      if (!bounce) {
-        scrollBtn.classList.add('no-bounce');
-      } else {
-        scrollBtn.classList.remove('no-bounce');
-      }
-      scrollBtn.classList.remove('is-hidden');
-      scrollBtn.classList.add('is-visible');
-    }
-  }
-
-  // Monitora o scroll da Hero para evidenciar o botão assim que o usuário atinge a parte inferior
-  function checkScrollBottom() {
-    if (!isMobileDevice() || window.__isMobileUnlocked) return;
-    const hero = document.getElementById('hero');
-    if (!hero) return;
-
-    const currentNavConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
-    const threshold = currentNavConfig.bottomThresholdPx ?? 120;
-    const scrollBottom = (window.pageYOffset || window.scrollY || 0) + window.innerHeight;
-    const heroBottom = hero.offsetTop + hero.offsetHeight;
-
-    if (scrollBottom >= (heroBottom - threshold)) {
-      revealScrollButton();
-    }
-  }
-
-  window.addEventListener('scroll', checkScrollBottom, { passive: true });
-
-  // Revela o botão também quando a experiência inicial da Hero for concluída
-  function onHeroReady() {
-    const currentNavConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
-    const delay = currentNavConfig.buttonFadeDelayMs ?? 400;
     setTimeout(() => {
-      revealScrollButton();
+      if (window.__isMobileUnlocked) return;
+      const scrollBtn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
+      if (scrollBtn) {
+        scrollBtn.style.setProperty('--hero-btn-fade-duration', `${duration}ms`);
+        if (!bounce) {
+          scrollBtn.classList.add('no-bounce');
+        } else {
+          scrollBtn.classList.remove('no-bounce');
+        }
+        scrollBtn.classList.remove('is-hidden');
+        scrollBtn.classList.add('is-visible');
+      }
     }, delay);
   }
 
   if (window.__heroExperienceFinished) {
-    onHeroReady();
+    revealScrollButton();
   } else {
-    window.addEventListener('heroExperienceFinished', onHeroReady, { once: true });
+    window.addEventListener('heroExperienceFinished', revealScrollButton, { once: true });
     // Contingência: se o evento de término da Hero não for disparado em até 4.5s
     setTimeout(() => {
       if (!window.__heroExperienceFinished && !window.__isMobileUnlocked) {
-        onHeroReady();
+        revealScrollButton();
       }
     }, 4500);
   }
-
-  // Verificação inicial caso a página recarregue já rolada
-  checkScrollBottom();
 }
 
 /**
@@ -748,39 +715,25 @@ function unlockMobileNavigation() {
     btn.classList.add('is-hidden');
   }
 
-  // 1. Liberação definitiva da rolagem do documento
+  // Liberação definitiva do documento
   document.body.classList.remove('is-mobile-locked');
   document.body.classList.add('is-mobile-unlocked');
 
   const evSection = document.getElementById('ultimos-eventos') || document.querySelector('.eventos-section');
   if (!evSection) return;
 
-  // 2. Torna a seção visível e acessível no fluxo da página
-  evSection.style.display = 'flex';
-  evSection.style.visibility = 'visible';
-  evSection.style.pointerEvents = 'auto';
-
-  // 3. Notifica o redimensionamento dos shaders WebGL da seção de eventos
+  // Notifica o recálculo dos elementos WebGL e carrosséis após revelar a seção
   window.dispatchEvent(new Event('resize'));
   if (typeof renderEventos === 'function') {
     renderEventos();
   }
 
-  // 4. Executa rolagem suave (smooth scroll) até o topo de #ultimos-eventos
+  // Executa rolagem suave após dois frames de animação (garante que o reflow do DOM terminou)
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       const currentNavConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
       const scrollBehavior = currentNavConfig.scrollBehavior || 'smooth';
-      const targetTop = evSection.getBoundingClientRect().top + (window.pageYOffset || window.scrollY || 0);
-
-      try {
-        window.scrollTo({
-          top: targetTop,
-          behavior: scrollBehavior
-        });
-      } catch (e) {
-        evSection.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
-      }
+      evSection.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
     });
   });
 }
