@@ -1,0 +1,56 @@
+# ==============================================================================
+# Casa Luanda - Painel de Configurações do Sistema
+# ==============================================================================
+# Centralização de parâmetros configuráveis conforme diretrizes da skill externaliza-config.
+
+header:
+  logo:
+    # Largura manual em pixels para exibição da imagem 'logo.png' no cabeçalho
+    widthPx: 80
+
+    # Altura manual em pixels para exibição da imagem 'logo.png' no cabeçalho
+    heightPx: 80
+
+hero:
+  animation:
+    # Duração da animação de fade suave de entrada do título (em milissegundos)
+    fadeDurationMs: 1400
+
+    # Tempo de espera após a conclusão do preloader antes de iniciar o fade (em milissegundos)
+    fadeDelayMs: 300
+
+    # Distância de rolagem em pixels para a transição completa de saída da Hero
+    scrollDistancePx: 450
+
+    # Deslocamento vertical adicional em pixels aplicado durante o scroll da Hero
+    scrollTranslateYPx: -60
+
+    # Opacidade mínima do título ao final da rolagem da seção Hero
+    scrollMinOpacity: 0.0
+
+eventos:
+  animation:
+    # Opacidade inicial padrão aplicada a todos os cartazes em repouso
+    baseOpacity: 0.2
+
+    # Opacidade de destaque ao passar o cursor sobre o cartaz
+    hoverOpacity: 1.0
+
+    # Aumento percentual de escala dos cartazes centrais ao receber hover (+33.4%)
+    hoverScalePercent: 33.4
+
+    # Duração em milissegundos da transição de escala/opacidade e trava temporária contra oscilação nos cartazes de eventos
+    hoverTransitionDurationMs: 500
+
+    # Tempo de espera em milissegundos com o cursor sobre o cartaz antes de liberar o clique/redirecionamento (2000ms = 2s)
+    clickDelayMs: 2000
+
+  title:
+    # Feature flag booleana: ativa (true) ou desativa (false) o efeito de brilho intenso no título da seção Últimos eventos
+    glowEnabled: true
+
+    # Intensidade multiplicadora do brilho do título (1.0 = 100% normal, 0.5 = suave, 2.0 = ultra intenso, 0.0 = sem brilho)
+    glowIntensity: 1.0
+
+    # Espaçamento horizontal entre as letras do título da seção (em unidades 'em', padrão 0.015)
+    letterSpacingEm: 0.015

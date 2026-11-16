@@ -1,0 +1,65 @@
+{
+  "_comentario_arquivo": "Arquivo principal de configuração centralizada do sistema Casa Luanda",
+  "header": {
+    "logo": {
+      "_comentario_widthPx": "Largura manual em pixels para exibição da imagem 'logo.png' no cabeçalho",
+      "widthPx": 100,
+
+      "_comentario_heightPx": "Altura manual em pixels para exibição da imagem 'logo.png' no cabeçalho",
+      "heightPx": 100,
+    }
+  },
+  "hero": {
+    "animation": {
+      "_comentario_fadeDurationMs": "Duração da animação de fade suave de entrada do título (em milissegundos)",
+      "fadeDurationMs": 1400,
+
+      "_comentario_fadeDelayMs": "Tempo de espera após o preloader antes de iniciar o fade de entrada (em milissegundos)",
+      "fadeDelayMs": 300,
+
+      "_comentario_scrollDistancePx": "Distância de rolagem em pixels para a transição completa de saída e fade da Hero",
+      "scrollDistancePx": 450,
+
+      "_comentario_scrollTranslateYPx": "Deslocamento vertical adicional em pixels aplicado durante o scroll da Hero",
+      "scrollTranslateYPx": -60,
+
+      "_comentario_scrollMinOpacity": "Opacidade mínima do título ao final da rolagem da seção Hero",
+      "scrollMinOpacity": 0.0
+    },
+    "performance": {
+      "_comentario_pauseWhenHidden": "Feature flag para pausar o loop WebGL da Hero quando fora do viewport economizando GPU e bateria",
+      "pauseWhenHidden": true,
+
+      "_comentario_observerThreshold": "Limite de visibilidade do IntersectionObserver para ativar a renderização da Hero",
+      "observerThreshold": 0.05
+    }
+  },
+  "eventos": {
+    "animation": {
+      "_comentario_baseOpacity": "Opacidade inicial padrão aplicada a todos os cartazes em repouso (50% de transparência)",
+      "baseOpacity": 0.25,
+
+      "_comentario_hoverOpacity": "Opacidade de destaque ao passar o cursor sobre o cartaz (100%)",
+      "hoverOpacity": 1.0,
+
+      "_comentario_hoverScalePercent": "Aumento percentual de escala dos cartazes centrais ao receber hover (+33.4%)",
+      "hoverScalePercent": 33.4,
+
+      "_comentario_hoverTransitionDurationMs": "Duração em milissegundos da transição de escala/opacidade e trava temporária contra oscilação nos cartazes de eventos",
+      "hoverTransitionDurationMs": 500,
+
+      "_comentario_clickDelayMs": "Tempo de espera em milissegundos com o cursor sobre o cartaz antes de liberar o clique/redirecionamento para evitar cliques acidentais (padrão: 2000ms = 2s)",
+      "clickDelayMs": 2000
+    },
+    "title": {
+      "_comentario_glowEnabled": "Feature flag booleana: ativa (true) ou desativa (false) o efeito de brilho intenso no título da seção Últimos eventos",
+      "glowEnabled": true,
+
+      "_comentario_glowIntensity": "Intensidade multiplicadora do brilho do título (1.0 = 100% normal, 0.5 = suave, 2.0 = ultra intenso, 0.0 = sem brilho)",
+      "glowIntensity": 0.6,
+
+      "_comentario_letterSpacingEm": "Espaçamento horizontal entre as letras do título da seção (em unidades 'em', padrão 0.015)",
+      "letterSpacingEm": 0.015
+    }
+  }
+}

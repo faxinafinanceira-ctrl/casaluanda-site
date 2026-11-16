@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #000;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #000;
+}
+
+body.preloader-active {
+    overflow: hidden;
+}
+
+
+#glCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    display: block;
+    transition: opacity 0.4s ease;
+}
+
+@keyframes heroMovimento {
+    0% {
+        background-size: 125%;
+        background-position: center center;
+    }
+
+    20% {
+        background-size: 140%;
+        background-position: right top;
+    }
+
+    60% {
+        background-size: 140%;
+        background-position: left top;
+    }
+
+    80% {
+        background-size: 140%;
+        background-position: right bottom;
+    }
+
+    100% {
+        background-size: 140%;
+        background-position: center bottom;
+    }
+}
+
+/* ==========================================================================
+   Seção Hero e Título (Camada de Conteúdo)
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hero-title {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(3rem, 5.5vw, 6.5rem);
+    letter-spacing: 0.015em;
+    color: #F1E4C6;
+    text-shadow:
+        0 0 30px rgba(255, 240, 200, 0.6),
+        /* brilho suave */
+        0 0 60px rgba(255, 240, 200, 0.4),
+        /* luz mais espalhada */
+        0 0 100px rgba(255, 240, 200, 0.2);
+    /* halo distante */
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1;
+    pointer-events: auto;
+    opacity: 0;
+    z-index: 2;
+    will-change: opacity, transform;
+}
+
+@media (min-width: 1024px) {
+    .hero-title {
+        width: 42.5vw;
+        max-width: 45vw;
+        min-width: 40vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.page-content {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+}
+
+.spacer-section {
+    min-height: 100vh;
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   Seção Últimos Eventos
+   Fundo sólido opaco e isolamento estrutural completo em relação à Hero
+   ========================================================================== */
+#ultimos-eventos,
+#eventos,
+.eventos-section {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #2b170c;
+    background-image: url('../obts/casa.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#eventosCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.eventos-title {
+    font-family: 'Roboto Condensed', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: var(--eventos-title-letter-spacing, 0.015em);
+    color: #F1E4C6;
+    text-align: center;
+    text-shadow: var(--eventos-title-text-shadow,
+        0 0 50px rgba(255,255,255,1),
+        0 0 100px rgba(255,240,200,1),
+        0 0 150px rgba(255,240,200,0.9),
+        0 0 250px rgba(255,240,200,0.8),
+        0 0 350px rgba(255,240,200,0.7));
+}
+
+

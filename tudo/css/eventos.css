@@ -1,0 +1,289 @@
+/* ==========================================================================
+   Nova Seção: Últimos Eventos
+   ========================================================================== */
+
+.eventos-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    overflow: hidden;
+}
+
+/* Canvas de Shader WebGL exclusivo para Últimos Eventos */
+#eventosCanvas,
+.eventos-bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+}
+
+/* --- Header --- */
+.eventos-header {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    background-color: #4A2713;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.header-logo img {
+    height: var(--header-logo-height, 60px);
+    width: var(--header-logo-width, 60px);
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.header-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    background: transparent;
+    border: none;
+    color: #F1E4C6;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* --- Conteúdo Principal --- */
+.eventos-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 0 2rem;
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.eventos-title {
+    font-family: 'Roboto Condensed', Georgia, serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 600;
+    letter-spacing: var(--eventos-title-letter-spacing, 0.015em);
+    color: #F1E4C6;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: var(--eventos-title-text-shadow,
+        0 0 50px rgba(255,255,255,1),
+        0 0 100px rgba(255,240,200,1),
+        0 0 150px rgba(255,240,200,0.9),
+        0 0 250px rgba(255,240,200,0.8),
+        0 0 350px rgba(255,240,200,0.7));
+    z-index: 20;
+}
+
+/* --- Carrossel Circular --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 60vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    z-index: 5;
+}
+
+.cartaz {
+    position: absolute;
+    top: 50%;
+    transform-origin: center center;
+    aspect-ratio: 2025 / 2531;
+    height: 75%;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    overflow: hidden;
+    cursor: default;
+    pointer-events: auto;
+    transition: all var(--cartaz-transition-duration, 0.5s) cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cartaz img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* Posições */
+.cartaz.pos-neg-1 {
+    left: -5%;
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none !important;
+}
+
+.cartaz.pos-5 {
+    left: 105%;
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none !important;
+}
+
+.cartaz.pos-0 {
+    left: 15%;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: var(--cartaz-base-opacity, 0.5);
+    z-index: 2;
+}
+
+.cartaz.pos-4 {
+    left: 85%;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: var(--cartaz-base-opacity, 0.5);
+    z-index: 2;
+}
+
+.cartaz.pos-1 {
+    left: 32%;
+    transform: translate(-50%, -50%) scale(0.875);
+    opacity: var(--cartaz-base-opacity, 0.5);
+    z-index: 3;
+}
+
+.cartaz.pos-3 {
+    left: 68%;
+    transform: translate(-50%, -50%) scale(0.875);
+    opacity: var(--cartaz-base-opacity, 0.5);
+    z-index: 3;
+}
+
+.cartaz.pos-2 {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: var(--cartaz-base-opacity, 0.5);
+    z-index: 4;
+}
+
+.cartaz.no-transition {
+    transition: none !important;
+}
+
+
+/* --- Hover Interactions (Destaque Premium com Transição Suave) --- */
+/* Cartaz Central (pos-2): já centralizado (left: 50%), expande com escala dinâmica e opacidade hover */
+.cartaz.pos-2:hover,
+.cartaz.pos-2.is-hovered {
+    transform: translate(-50%, -50%) scale(var(--cartaz-hover-scale-center, 1.334));
+    opacity: var(--cartaz-hover-opacity, 1);
+    z-index: 50;
+}
+
+/* Cartaz Lateral Esquerdo (pos-1): desloca suavemente em direção ao centro (32% -> 38%), expande com escala dinâmica e opacidade hover */
+.cartaz.pos-1:hover,
+.cartaz.pos-1.is-hovered {
+    left: 38%;
+    transform: translate(-50%, -50%) scale(var(--cartaz-hover-scale-side, 1.167));
+    opacity: var(--cartaz-hover-opacity, 1);
+    z-index: 50;
+}
+
+/* Cartaz Lateral Direito (pos-3): desloca suavemente em direção ao centro (68% -> 62%), expande com escala dinâmica e opacidade hover */
+.cartaz.pos-3:hover,
+.cartaz.pos-3.is-hovered {
+    left: 62%;
+    transform: translate(-50%, -50%) scale(var(--cartaz-hover-scale-side, 1.167));
+    opacity: var(--cartaz-hover-opacity, 1);
+    z-index: 50;
+}
+
+/* Prioridade visual ao cartaz ativo */
+.cartaz.is-hovered {
+    z-index: 50;
+}
+
+/* Garante que o cartaz ativo e em animação receba eventos normalmente */
+.cartaz,
+.cartaz:hover,
+.cartaz.is-hovered,
+.cartaz.is-animating {
+    pointer-events: auto !important;
+}
+
+/* O cursor de link (mãozinha) só é ativado após passar 2s com o cartaz em foco (.is-clickable) */
+.cartaz.is-clickable,
+.cartaz.is-clickable:hover,
+.cartaz.is-clickable img {
+    cursor: pointer !important;
+}
+
+/* --- Botões de Navegação --- */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.4);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.8);
+    border-color: rgba(255,255,255,0.6);
+}
+
+.carousel-btn img {
+    width: 25px;
+    height: auto;
+}
+
+.prev-btn {
+    left: 15%; /* Centro do cartaz pos-0 */
+}
+
+.next-btn {
+    left: 85%; /* Centro do cartaz pos-4 */
+}

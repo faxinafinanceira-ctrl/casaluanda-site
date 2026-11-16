@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Luanda</title>
+    <link rel="stylesheet" href="tudo/css/estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Roboto+Condensed:wght@300;400&family=Rye&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tudo/css/pre.css">
+    <link rel="stylesheet" href="tudo/css/eventos.css">
+</head>
+<body class="preloader-active">
+
+    <div id="preloader" class="preloader">
+
+        <div class="preloader-logo">
+
+            <div class="logo-casa">
+                CASA
+            </div>
+
+            <div class="logo-luanda" aria-label="LUANDA">
+                <span class="luanda-letter letter-l">L</span>
+                <span class="luanda-letter letter-u">U</span>
+                <span class="luanda-letter letter-a1">A</span>
+                <span class="luanda-letter letter-n">N</span>
+                <span class="luanda-letter letter-d">D</span>
+                <span class="luanda-letter letter-a2">A</span>
+            </div>
+
+            <div class="logo-subtitle">
+                ASSOCIAÇÃO AFRO-CULTURAL
+            </div>
+
+            <div class="preloader-shapes" aria-hidden="true">
+                <div class="shape-item shape-left"></div>
+                <div class="shape-item shape-center"></div>
+                <div class="shape-item shape-right"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Camada de Conteúdo e Seção Hero -->
+    <main class="page-content">
+        <section id="hero" class="hero-section" aria-label="Apresentação">
+            <canvas id="glCanvas"></canvas>
+            <h1 id="heroTitle" class="hero-title">BEM-VINDO</h1>
+        </section>
+
+        <!-- Nova Seção: Últimos Eventos -->
+        <section id="ultimos-eventos" class="eventos-section">
+            <canvas id="eventosCanvas" class="eventos-bg-canvas"></canvas>
+            <header class="eventos-header">
+                <div class="header-logo">
+                    <img data-img="logo">
+                </div>
+                <nav-menu id="mainNav"></nav-menu>
+            </header>
+
+            <div class="eventos-content">
+                <h2 class="eventos-title">Últimos eventos</h2>
+                
+                <div class="carousel-container">
+                    <button class="carousel-btn prev-btn" onclick="moverCarrossel(-1)" aria-label="Anterior">
+                        <img data-img="setaAnterior" style="transform: scaleX(-1);">
+                    </button>
+                    
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Cartazes injetados por JS -->
+                    </div>
+                    
+                    <button class="carousel-btn next-btn" onclick="moverCarrossel(1)" aria-label="Próximo">
+                        <img data-img="setaProximo">
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="config/config.img.js"></script>
+    <script>
+        (function() {
+            const config = window.configImg || (typeof configImg !== 'undefined' ? configImg : null);
+            const imagens = config && config.paginaInicial;
+            if (!imagens) return;
+
+            document.querySelectorAll('[data-img]').forEach(img => {
+                const chave = img.getAttribute('data-img');
+                const dados = imagens[chave];
+                if (dados) {
+                    img.src = dados.caminho;
+                    img.alt = dados.alt;
+                    if (dados.link) {
+                        img.style.cursor = 'pointer';
+                        img.addEventListener('click', () => {
+                            window.location.href = dados.link;
+                        });
+                    }
+                }
+            });
+        })();
+    </script>
+    <script src="tudo/js/shaders.js"></script>
+    <script src="tudo/js/carousel.js"></script>
+    <script src="tudo/js/main.js"></script>
+    <script src="tudo/js/pre.js"></script>
+    <script src="tudo/js/hero.js"></script>
+    <script src="tudo/js/components/nav-menu.js"></script>
+    <script src="tudo/js/eventos.js"></script>
+
+</body>
+</html>
