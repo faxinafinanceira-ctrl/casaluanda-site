@@ -206,9 +206,8 @@ if (!gl) {
 
 function resize() {
   if (!gl || !canvas) return;
-  const parent = canvas.parentElement || document.body;
-  const w = parent.clientWidth || window.innerWidth;
-  const h = parent.clientHeight || window.innerHeight;
+  const w = window.innerWidth;
+  const h = window.innerHeight;
   if (canvas.width !== w || canvas.height !== h) {
     canvas.width  = w;
     canvas.height = h;
@@ -633,17 +632,22 @@ function initMobileNavigation() {
   const navConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
   if (navConfig.enabled === false) return;
 
+  // Aplica a variável de altura sutil do spacer mobile (entre 115vh e 120vh)
+  const spacerHeightVh = navConfig.scrollSpacerHeightVh || 118;
+  document.documentElement.style.setProperty('--mobile-spacer-height', `${spacerHeightVh}vh`);
+
   // Garante a existência do botão no DOM
   let btn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
   if (!btn) {
-    const hero = document.getElementById('hero');
-    if (hero) {
+    const spacer = document.getElementById('heroSpacer') || document.querySelector('.hero-mobile-spacer');
+    const container = spacer || document.getElementById('hero');
+    if (container) {
       btn = document.createElement('button');
       btn.id = 'heroScrollBtn';
       btn.className = 'hero-scroll-btn';
       btn.setAttribute('aria-label', 'Ver últimos eventos');
       btn.innerHTML = '<img data-img="setaAbaixo" src="tudo/obts/setaparabaixo.svg" alt="Rolar para baixo">';
-      hero.appendChild(btn);
+      container.appendChild(btn);
     }
   }
 
@@ -663,42 +667,18 @@ function initMobileNavigation() {
     btn.addEventListener('touchend', handleUnlock, { passive: false });
   }
 
-  // Revela o botão somente quando a experiência inicial da Hero for concluída
-  function revealScrollButton() {
-    if (!isMobileDevice() || window.__isMobileUnlocked) return;
-    const currentNavConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
-    if (currentNavConfig.enabled === false) return;
-
-    const delay = currentNavConfig.buttonFadeDelayMs ?? 400;
-    const duration = currentNavConfig.buttonFadeDurationMs ?? 800;
-    const bounce = currentNavConfig.bounceAnimation !== false;
-
-    setTimeout(() => {
-      if (window.__isMobileUnlocked) return;
-      const scrollBtn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
-      if (scrollBtn) {
-        scrollBtn.style.setProperty('--hero-btn-fade-duration', `${duration}ms`);
-        if (!bounce) {
-          scrollBtn.classList.add('no-bounce');
-        } else {
-          scrollBtn.classList.remove('no-bounce');
-        }
-        scrollBtn.classList.remove('is-hidden');
-        scrollBtn.classList.add('is-visible');
-      }
-    }, delay);
-  }
-
-  if (window.__heroExperienceFinished) {
-    revealScrollButton();
-  } else {
-    window.addEventListener('heroExperienceFinished', revealScrollButton, { once: true });
-    // Contingência: se o evento de término da Hero não for disparado em até 4.5s
-    setTimeout(() => {
-      if (!window.__heroExperienceFinished && !window.__isMobileUnlocked) {
-        revealScrollButton();
-      }
-    }, 4500);
+  // Configura a visibilidade do botão da seta
+  const duration = navConfig.buttonFadeDurationMs ?? 400;
+  const bounce = navConfig.bounceAnimation !== false;
+  if (btn) {
+    btn.style.setProperty('--hero-btn-fade-duration', `${duration}ms`);
+    if (!bounce) {
+      btn.classList.add('no-bounce');
+    } else {
+      btn.classList.remove('no-bounce');
+    }
+    btn.classList.remove('is-hidden');
+    btn.classList.add('is-visible');
   }
 }
 
@@ -709,31 +689,35 @@ function unlockMobileNavigation() {
   if (window.__isMobileUnlocked) return;
   window.__isMobileUnlocked = true;
 
+  // 1. Ocultar o botão da seta para não reaparecer após a transição
   const btn = document.getElementById('heroScrollBtn') || document.querySelector('.hero-scroll-btn');
   if (btn) {
     btn.classList.remove('is-visible');
     btn.classList.add('is-hidden');
   }
 
-  // Liberação definitiva do documento
+  // 2. Remover a classe de trava (is-mobile-locked) e aplicar estado desbloqueado
   document.body.classList.remove('is-mobile-locked');
   document.body.classList.add('is-mobile-unlocked');
 
   const evSection = document.getElementById('ultimos-eventos') || document.querySelector('.eventos-section');
   if (!evSection) return;
 
-  // Notifica o recálculo dos elementos WebGL e carrosséis após revelar a seção
+  // 3. Exibir #ultimos-eventos no fluxo
+  evSection.style.display = 'flex';
+  evSection.style.visibility = 'visible';
+  evSection.style.pointerEvents = 'auto';
+
+  // 4. Disparar redimensionamento dos shaders WebGL da seção de eventos
   window.dispatchEvent(new Event('resize'));
   if (typeof renderEventos === 'function') {
     renderEventos();
   }
 
-  // Executa rolagem suave após dois frames de animação (garante que o reflow do DOM terminou)
+  // 5. Executar scroll suave direto até #ultimos-eventos
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      const currentNavConfig = (window.APP_CONFIG && window.APP_CONFIG.mobileNavigation) || {};
-      const scrollBehavior = currentNavConfig.scrollBehavior || 'smooth';
-      evSection.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
+      evSection.scrollIntoView({ behavior: 'smooth' });
     });
   });
 }

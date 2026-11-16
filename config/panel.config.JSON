@@ -41,11 +41,8 @@
     "_comentario_breakpointWidth": "Largura máxima de tela em pixels para classificar o dispositivo como mobile nos testes de capacidade",
     "breakpointWidth": 1024,
 
-    "_comentario_buttonFadeDelayMs": "Tempo de espera em milissegundos após o término da experiência inicial da Hero para exibir o botão da seta para baixo",
-    "buttonFadeDelayMs": 400,
-
-    "_comentario_buttonFadeDurationMs": "Duração em milissegundos da transição de surgimento do botão da seta para baixo",
-    "buttonFadeDurationMs": 800,
+    "_comentario_scrollSpacerHeightVh": "Altura em unidades 'vh' do container de rolagem mínima no mobile (padrão: 118vh, entre 115vh e 120vh) suficiente apenas para visualizar o botão SVG sem alterar a Hero 100vh",
+    "scrollSpacerHeightVh": 118,
 
     "_comentario_scrollBehavior": "Comportamento da rolagem ao tocar no botão ('smooth' para rolagem suave ou 'auto' para instantânea)",
     "scrollBehavior": "smooth",
