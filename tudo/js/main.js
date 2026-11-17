@@ -680,6 +680,11 @@ function initMobileNavigation() {
     btn.classList.remove('is-hidden');
     btn.classList.add('is-visible');
   }
+
+  // Se a página for carregada com âncora direta para os eventos (ex: vindo de Sobre Nós)
+  if (window.location.hash === '#ultimos-eventos') {
+    unlockMobileNavigation();
+  }
 }
 
 /**

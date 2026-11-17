@@ -70,3 +70,72 @@ eventos:
 
     # Espaçamento horizontal entre as letras do título da seção (em unidades 'em', padrão 0.015)
     letterSpacingEm: 0.015
+
+sobreNos:
+  card:
+    # Largura percentual do card retangular em relação à viewport (padrão 94%, garantindo 3% de margem em cada lateral)
+    widthPercent: 94
+
+    # Raio de curvatura dos quatro cantos arredondados do card no desktop (em pixels, padrão 50px)
+    borderRadiusPx: 50
+
+    # Raio de curvatura das bordas arredondadas do card para telas menores e tablets (em pixels, padrão 24px)
+    borderRadiusMobilePx: 24
+
+    # Margem inferior em unidades 'vh' abaixo do card (0vh = estende o card até a base da tela sem sobrar margem inferior)
+    marginBottomVh: 0
+
+    # Altura mínima do card no desktop em unidades 'vh' para garantir visual editorial contínuo até a base da tela (padrão: 65vh)
+    minHeightVh: 65
+
+    # Altura mínima do card em visualização móvel em unidades 'vh' (padrão: 60vh)
+    minHeightMobileVh: 60
+
+    # Espaçamento interno generoso do card para garantir que leituras longas não toquem nos cantos curvos (em 'rem')
+    paddingRem: 3.0
+
+    # Espaçamento interno adaptado para dispositivos móveis (em 'rem')
+    paddingMobileRem: 1.5
+
+  title:
+    # Feature flag booleana: ativa (true) ou desativa (false) o efeito de sombra luminosa multi-camadas no título SOBRE NÓS
+    glowEnabled: true
+
+    # Intensidade multiplicadora do brilho do título (1.0 = 100% normal, 0.6 = padrão institucional difuso, 0.0 = sem brilho)
+    glowIntensity: 1.0
+
+    # Espaçamento horizontal entre as letras do título SOBRE NÓS (em unidades 'em', padrão 0.015)
+    letterSpacingEm: 0.015
+
+  scroll:
+    # Feature flag booleana: ativa (true) ou desativa (false) o isolamento dinâmico de scroll ao passar o cursor sobre o card
+    wheelIsolation: true
+
+    # Feature flag booleana: ativa (true) ou desativa (false) o indicador visual estilizado e trilha de rolagem do card
+    indicatorEnabled: true
+
+    # Feature flag booleana: ativa (true) ou desativa (false) a sutil animação de pulso vertical na seta indicadora para baixo
+    bounceAnimation: true
+
+    # Feature flag booleana: esmaece suavemente a seta indicadora quando o usuário atinge o final do conteúdo textual
+    fadeOnEnd: true
+
+    # Deslocamento vertical em pixels aplicado ao clicar na seta indicadora de rolagem para baixo
+    stepScrollPx: 180
+
+  editorial:
+    # Largura máxima da imagem institucional marca.png em pixels na diagramação desktop (padrão: 280px)
+    marcaMaxWidthPx: 280
+
+    # Largura máxima da imagem institucional marca.png em pixels na visualização móvel (padrão: 200px)
+    marcaMaxWidthMobilePx: 200
+
+    # Espaçamento (gap) entre a coluna da imagem e a coluna de texto editorial no desktop (em rem, padrão: 3.0rem)
+    columnsGapRem: 3.0
+
+    # Altura da linha (line-height) dos parágrafos para leitura confortável contínua (padrão: 1.75)
+    bodyLineHeight: 1.75
+
+    # Espaçamento inferior uniforme em rem entre os parágrafos do texto (padrão: 1.25rem)
+    paragraphMarginBottomRem: 1.25
+

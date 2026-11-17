@@ -49,7 +49,28 @@ const configImg = {
     ]
   },
   paginaEventos: {},
-  paginaSobre: {},
+  paginaSobre: {
+    fundo: {
+      caminho: "tudo/obts/qmos.png",
+      link: "",
+      alt: "Fundo ilustrado da seção Sobre Nós"
+    },
+    logo: {
+      caminho: "tudo/obts/logo.png",
+      link: "",
+      alt: "Logo Casa Luanda"
+    },
+    marca: {
+      caminho: "tudo/obts/marca.png",
+      link: "",
+      alt: "Marca Institucional Casa Luanda"
+    },
+    setaScroll: {
+      caminho: "tudo/obts/setaparabaixo.svg",
+      link: "",
+      alt: "Indicador de rolagem do card"
+    }
+  },
   paginaContato: {}
 };
 

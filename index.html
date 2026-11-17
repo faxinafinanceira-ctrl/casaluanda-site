@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,13 @@
     <link rel="stylesheet" href="tudo/css/estilos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Roboto+Condensed:wght@300;400&family=Rye&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Roboto+Condensed:wght@300;400&family=Rye&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="tudo/css/pre.css">
     <link rel="stylesheet" href="tudo/css/eventos.css">
 </head>
+
 <body class="preloader-active">
 
     <div id="preloader" class="preloader">
@@ -70,16 +74,16 @@
 
             <div class="eventos-content">
                 <h2 class="eventos-title">Últimos eventos</h2>
-                
+
                 <div class="carousel-container">
                     <button class="carousel-btn prev-btn" onclick="moverCarrossel(-1)" aria-label="Anterior">
                         <img data-img="setaAnterior" style="transform: scaleX(-1);">
                     </button>
-                    
+
                     <div class="carousel-track" id="carouselTrack">
                         <!-- Cartazes injetados por JS -->
                     </div>
-                    
+
                     <button class="carousel-btn next-btn" onclick="moverCarrossel(1)" aria-label="Próximo">
                         <img data-img="setaProximo">
                     </button>
@@ -90,7 +94,7 @@
 
     <script src="config/config.img.js"></script>
     <script>
-        (function() {
+        (function () {
             const config = window.configImg || (typeof configImg !== 'undefined' ? configImg : null);
             const imagens = config && config.paginaInicial;
             if (!imagens) return;
@@ -100,7 +104,7 @@
                 const dados = imagens[chave];
                 if (dados) {
                     img.src = dados.caminho;
-                    img.alt = dados.alt;
+                    if (dados.alt) img.alt = dados.alt;
                     if (dados.link) {
                         img.style.cursor = 'pointer';
                         img.addEventListener('click', () => {
@@ -121,4 +125,5 @@
     <script src="tudo/js/eventos.js"></script>
 
 </body>
+
 </html>

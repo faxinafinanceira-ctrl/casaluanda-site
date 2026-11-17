@@ -153,7 +153,7 @@ async function loadEventosConfiguration() {
                 const lm = resJson.headers.get("Last-Modified");
                 if (lm) jsonTime = new Date(lm).getTime();
             }
-        } catch (e) {}
+        } catch (e) { }
 
         try {
             const resYaml = await fetch("config/panel.config.yaml" + cb, { cache: "no-store" });
@@ -163,7 +163,7 @@ async function loadEventosConfiguration() {
                 const lm = resYaml.headers.get("Last-Modified");
                 if (lm) yamlTime = new Date(lm).getTime();
             }
-        } catch (e) {}
+        } catch (e) { }
 
         if (jsonConfig && yamlConfig && typeof window.deepMergeConfig === "function") {
             window.APP_CONFIG = yamlTime > jsonTime
@@ -299,11 +299,11 @@ function createCartazElement(dataIndex) {
     el.style.cursor = 'default';
     el._clickUnlocked = false;
     el._hoverStartTime = 0;
-    
+
     const imgSrc = data.imagemSrc || data.caminho || '';
     const imgAlt = data.titulo || data.alt || `Evento ${dataIndex + 1}`;
     el.innerHTML = `<img src="${imgSrc}" alt="${imgAlt}">`;
-    
+
     // Listeners para controle de hover estável e sem engasgos
     el.addEventListener('mouseenter', () => handleCartazMouseEnter(el));
     el.addEventListener('mouseleave', () => handleCartazMouseLeave(el));
@@ -335,11 +335,11 @@ function initCarousel() {
     if (!track) return;
     track.innerHTML = '';
     carouselElements = [];
-    
+
     // Queremos 5 itens visíveis, então começamos mapeando do último para dar o wrap
     // Ex: para 5 itens, índices de dados: 4, 0, 1, 2, 3, 4, 0
     const initialIndices = [4, 0, 1, 2, 3, 4, 0];
-    
+
     initialIndices.forEach((dataIdx, i) => {
         const el = createCartazElement(dataIdx);
         el.classList.add(positionClasses[i]);
@@ -397,15 +397,15 @@ function moverCarrossel(direction) {
     if (direction === 1) {
         // Próximo: Desliza para esquerda
         // O elemento que estava escondido na esquerda (-1) vai para a direita (5)
-        const wrappingElement = carouselElements.shift(); 
-        
+        const wrappingElement = carouselElements.shift();
+
         // Removemos a transição para ele "pular" instantaneamente para a ponta sem voar pela tela
         wrappingElement.classList.add('no-transition');
-        
+
         // Atualiza o conteúdo para o item sequencial após o último
         const lastElement = carouselElements[carouselElements.length - 1];
         const newDataIndex = getWrappedIndex(parseInt(lastElement.dataset.dataIndex) + 1);
-        
+
         wrappingElement.dataset.dataIndex = newDataIndex;
         wrappingElement.style.cursor = 'default';
         wrappingElement._clickUnlocked = false;
@@ -431,28 +431,28 @@ function moverCarrossel(direction) {
             const currentIdx = parseInt(wrappingElement.dataset.dataIndex, 10);
             aoClicarNoCartaz(currentIdx + 1);
         };
-        
+
         // Coloca no fim do array
         carouselElements.push(wrappingElement);
-        
+
         // Atualiza as posições de todos
         updateClasses();
-        
+
         // Devolve a transição após o render (pulo instantâneo)
         setTimeout(() => {
             wrappingElement.classList.remove('no-transition');
         }, 50); // Timeout pequeno para garantir o repaint
-        
+
     } else {
         // Anterior: Desliza para direita
         // O elemento escondido na direita (5) vai para a esquerda (-1)
         const wrappingElement = carouselElements.pop();
-        
+
         wrappingElement.classList.add('no-transition');
-        
+
         const firstElement = carouselElements[0];
         const newDataIndex = getWrappedIndex(parseInt(firstElement.dataset.dataIndex) - 1);
-        
+
         wrappingElement.dataset.dataIndex = newDataIndex;
         wrappingElement.style.cursor = 'default';
         wrappingElement._clickUnlocked = false;
@@ -478,12 +478,12 @@ function moverCarrossel(direction) {
             const currentIdx = parseInt(wrappingElement.dataset.dataIndex, 10);
             aoClicarNoCartaz(currentIdx + 1);
         };
-        
+
         // Coloca no início do array
         carouselElements.unshift(wrappingElement);
-        
+
         updateClasses();
-        
+
         setTimeout(() => {
             wrappingElement.classList.remove('no-transition');
         }, 50);
@@ -495,11 +495,34 @@ function moverCarrossel(direction) {
 // ==========================================================================
 
 /**
- * Stub de Clique no Menu
+ * Navegação e Ação de Clique no Menu
  */
-function aoClicarMenu(nome) {
-    console.log(`Menu clicado: ${nome}`);
-    // TODO: Implementar navegação ou scroll para as seções correspondentes
+function aoClicarMenu(nome, sectionId) {
+    console.log(`Menu clicado: ${nome} (seção: ${sectionId || 'indefinida'})`);
+
+    // Identifica o alvo da seção com base no ID explícito ou no rótulo do item
+    const targetId = sectionId || (
+        (nome === 'Sobre nós' || nome === 'Sobre nos') ? 'sobre-nos' :
+            (nome === 'Eventos' || nome === 'Últimos eventos') ? 'ultimos-eventos' :
+                null
+    );
+
+    if (targetId) {
+        // Se o mobile estiver travado na Hero, libera a navegação antes de rolar
+        if (typeof window.unlockMobileNavigation === 'function') {
+            window.unlockMobileNavigation();
+        }
+
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+            return;
+        } else if (targetId === 'sobre-nos') {
+            window.location.href = 'sobre-nos.html';
+            return;
+        }
+    }
+    // Para 'Projetos', 'Agentes culturais' e 'Transparência', mantém o comportamento de placeholder/stub
 }
 
 /**
