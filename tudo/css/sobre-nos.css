@@ -1,0 +1,821 @@
+/* ==========================================================================
+   Sobre Nós - Casa Luanda
+   Layout com imagem proporcional nativa + card branco contínuo até o fim da página
+   ========================================================================== */
+
+:root {
+    --sobre-card-base-opacity: 0.2;
+    --sobre-card-active-opacity: 1.0;
+    --sobre-card-transition-duration: 400ms;
+}
+
+/* --- Reset: a página sobre-nos mantém a navegação fluida e o scroll padrão da janela --- */
+.pagina-sobre-nos {
+    background-color: #2b170c;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* --- Container Geral da Seção Sobre Nós --- */
+#sobre-nos,
+.sobre-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #2b170c;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    overflow: visible;
+}
+
+/* --- Cabeçalho e Barra Superior --- */
+.eventos-header,
+.sobre-header {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    background-color: #4A2713;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    flex-shrink: 0;
+}
+
+.eventos-header .header-logo,
+.sobre-header .header-logo,
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.eventos-header .header-logo img,
+.sobre-header .header-logo img,
+.header-logo img {
+    width: var(--header-logo-width, 80px);
+    height: var(--header-logo-height, 80px);
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Navegação do Cabeçalho --- */
+.header-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    background: transparent;
+    border: none;
+    color: #F1E4C6;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* --- Container Principal de Conteúdo e Imagem --- */
+.sobre-main-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Imagem de Fundo (qmos.png) renderizada completa em proporção nativa sem cortes */
+.sobre-bg-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+}
+
+/* Camada de Conteúdo sobreposta à imagem de fundo: ocupa exatamente a área da imagem */
+.sobre-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* --- 3. Tipografia e Efeitos Exatos do Título --- */
+.sobre-title {
+    flex-shrink: 0;
+    margin: var(--sobre-title-margin-top, 2.5rem) 0 0 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    line-height: 1;
+    letter-spacing: var(--sobre-title-letter-spacing, 0.015em);
+    color: #F1E4C6;
+    text-align: center;
+    white-space: nowrap;
+
+    /* Efeito de brilho luminoso multi-camadas com intensidade 1.0 */
+    text-shadow: var(--sobre-title-text-shadow,
+            0 0 50px rgba(255, 255, 255, 1.0),
+            0 0 100px rgba(255, 240, 200, 1.0),
+            0 0 150px rgba(255, 240, 200, 0.9),
+            0 0 250px rgba(255, 240, 200, 0.8),
+            0 0 350px rgba(255, 240, 200, 0.7));
+}
+
+/* --- 4. Estrutura e Dimensões do Card Principal (.sobrenos-card) --- */
+.sobrenos-card,
+.sobre-card {
+    width: var(--sobre-card-width, 94%);
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: var(--sobre-card-margin-top, 2.5rem);
+    margin-bottom: 0 !important;
+    background-color: #FFFFFF;
+    border-radius: var(--sobre-card-radius, 50px) var(--sobre-card-radius, 50px) 0 0;
+    padding: var(--sobre-card-padding, 2.5rem 3.5rem);
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+
+    /* Termina exatamente no final da imagem e compacta o card para rolagem interna */
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    box-shadow: 0 -8px 45px rgba(0, 0, 0, 0.3);
+    opacity: var(--sobre-card-base-opacity, 0.2);
+    transition: opacity var(--sobre-card-transition-duration, 400ms) ease,
+                box-shadow 0.3s ease;
+    will-change: opacity;
+}
+
+.sobrenos-card.is-hovered,
+.sobre-card.is-hovered {
+    box-shadow: 0 -12px 50px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 1024px) {
+
+    .sobrenos-card,
+    .sobre-card {
+        border-radius: var(--sobre-card-radius-mobile, 24px) var(--sobre-card-radius-mobile, 24px) 0 0;
+        padding: var(--sobre-card-padding-mobile, 1.5rem 1.75rem);
+        margin-top: var(--sobre-card-margin-top-mobile, 1.5rem);
+        margin-bottom: 0 !important;
+        flex: 1 1 auto;
+        min-height: 0 !important;
+        height: auto !important;
+    }
+
+    .sobre-title {
+        margin: var(--sobre-title-margin-top-mobile, 1.5rem) 0 0 0;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .sobrenos-card,
+    .sobre-card {
+        margin-top: 1rem;
+        margin-bottom: 0 !important;
+        flex: 1 1 auto;
+        min-height: 0 !important;
+        height: auto !important;
+    }
+}
+
+/* --- Controle de Opacidade Dinâmica do Card --- */
+/* Estado ativo: 100% de opacidade (ao toque no mobile ou hover/classe no desktop) */
+.sobrenos-card.is-card-active,
+.sobre-card.is-card-active,
+.sobrenos-card.is-revealed,
+.sobre-card.is-revealed {
+    opacity: var(--sobre-card-active-opacity, 1.0) !important;
+}
+
+/* O conteúdo interno mantém opacidade total para evitar multiplicação de transparência */
+#sobreCardContent,
+.sobrenos-card .sobre-card-content,
+.sobre-card-content {
+    opacity: 1;
+}
+
+/* Desktop: hover suave de 20% para 100% e retorno na saída do cursor */
+@media (hover: hover) and (pointer: fine) {
+    .sobrenos-card:hover,
+    .sobre-card:hover {
+        opacity: var(--sobre-card-active-opacity, 1.0);
+    }
+}
+
+/* Mobile: elementos interativos internos não disparam links antes da ativação do card */
+@media (max-width: 1024px) {
+    .sobrenos-card:not(.is-card-active) a,
+    .sobrenos-card:not(.is-card-active) button,
+    .sobrenos-card:not(.is-card-active) [role="button"],
+    .sobrenos-card:not(.is-card-active) [data-img] {
+        pointer-events: none;
+    }
+
+    .pagina-sobre-nos {
+        cursor: pointer;
+    }
+
+    .sobrenos-card {
+        cursor: pointer;
+    }
+}
+
+.sobre-card-content {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    max-height: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-right: 2.25rem;
+}
+
+.sobre-card-content::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.sobre-text-body {
+    width: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: #1a1a1a;
+}
+
+.sobre-text-placeholder {
+    margin: 0;
+    padding: 0;
+    color: #1a1a1a;
+    font-weight: 400;
+    font-size: clamp(1.25rem, 1.9vw, 1.6rem);
+    letter-spacing: 0.01em;
+}
+
+/* --- Indicador de Rolagem e Trilha Customizada do Card --- */
+.sobre-scrollbar {
+    position: absolute;
+    top: 2rem;
+    right: 1.5rem;
+    bottom: 2rem;
+    width: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 15;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.sobre-scroll-down-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #4A2713;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, transform 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sobre-scroll-down-btn:hover {
+    color: #2b170c;
+    transform: scale(1.1);
+}
+
+.sobre-scroll-down-btn.bounce {
+    animation: sobreArrowBounce 1.8s ease-in-out infinite;
+}
+
+.sobre-scroll-down-btn.at-end {
+    opacity: 0.2;
+    pointer-events: none;
+    animation: none;
+}
+
+.sobre-arrow-icon {
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes sobreArrowBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(6px);
+    }
+}
+
+.sobre-scrollbar-track {
+    position: relative;
+    width: 6px;
+    flex: 1;
+    min-height: 60px;
+    background-color: rgba(74, 39, 19, 0.15);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Área de clique expandida na trilha para facilidade de toque e clique */
+.sobre-scrollbar-track::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -10px;
+    right: -10px;
+    cursor: pointer;
+}
+
+.sobre-scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 28px;
+    background-color: #4A2713;
+    border-radius: 3px;
+    cursor: grab;
+    transition: background-color 0.2s ease;
+    z-index: 2;
+}
+
+/* Área de arraste expandida (26px) para garantir facilidade de toque no mobile e precisão no mouse */
+.sobre-scrollbar-thumb::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -10px;
+    right: -10px;
+    cursor: grab;
+}
+
+.sobre-scrollbar-thumb:hover,
+.sobre-scrollbar-thumb.is-dragging {
+    background-color: #2b170c;
+    cursor: grabbing;
+}
+
+.sobre-scrollbar-thumb.is-dragging::before {
+    cursor: grabbing;
+}
+
+/* --- Integração com Navegação Mobile (Hero Lock & Unlock) --- */
+body.is-mobile-locked #sobre-nos,
+body.is-mobile-locked .sobre-section {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+body.is-mobile-unlocked #sobre-nos,
+body.is-mobile-unlocked .sobre-section {
+    display: flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+@media (min-width: 1025px) {
+
+    body.is-mobile-locked #sobre-nos,
+    body.is-mobile-locked .sobre-section {
+        display: flex !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+}
+
+/* --- Adaptação Fluida e Responsividade --- */
+@media (max-width: 1024px) {
+
+    .eventos-header,
+    .sobre-header {
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .eventos-header,
+    .sobre-header {
+        padding: 0.6rem 1rem;
+    }
+
+    .header-nav {
+        gap: 0.75rem;
+    }
+
+    .nav-link {
+        font-size: 0.95rem;
+    }
+
+    .sobrenos-card,
+    .sobre-card {
+        padding: 1.25rem 1.25rem;
+    }
+}
+
+/* ==========================================================================
+   Diagramação Editorial Interna do Card Sobre Nós (.sobrenos-card)
+   Integração da Marca Institucional (marca.png) e Hierarquia Tipográfica
+   ========================================================================== */
+
+/* --- Container Editorial Flex --- */
+.sobre-editorial-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--sobre-editorial-gap, 3rem);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- Coluna da Imagem Institucional (Desktop: Esquerda e Fixação Sticky Suave) --- */
+.sobre-marca-col {
+    flex: 0 0 var(--sobre-marca-max-width, 280px);
+    max-width: var(--sobre-marca-max-width, 280px);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.25rem;
+    box-sizing: border-box;
+}
+
+.sobre-marca-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(74, 39, 19, 0.08);
+    border: 1px solid rgba(74, 39, 19, 0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sobre-marca-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 26px rgba(74, 39, 19, 0.12);
+}
+
+.sobre-marca-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 406 / 482;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
+}
+
+.sobre-marca-caption {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    text-align: center;
+}
+
+.sobre-marca-badge {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #4A2713;
+    background-color: rgba(74, 39, 19, 0.08);
+    padding: 0.25rem 0.85rem;
+    border-radius: 50px;
+    border: 1px solid rgba(74, 39, 19, 0.15);
+}
+
+.sobre-marca-sub {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.82rem;
+    color: #7A5C4D;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+}
+
+/* --- Coluna de Texto Editorial Diagramado --- */
+.sobre-editorial-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sobre-secao {
+    margin-bottom: 2.25rem;
+}
+
+.sobre-secao:last-child {
+    margin-bottom: 0.5rem;
+}
+
+/* --- Títulos Internos (h3 / Roboto Condensed) --- */
+.sobre-editorial-heading {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: clamp(1.4rem, 1.8vw, 1.75rem);
+    font-weight: 600;
+    color: #4A2713;
+    margin-top: 2.25rem;
+    margin-bottom: 1.1rem;
+    letter-spacing: 0.015em;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid rgba(74, 39, 19, 0.12);
+    display: flex;
+    align-items: center;
+}
+
+.sobre-secao:first-child .sobre-editorial-heading {
+    margin-top: 0;
+}
+
+/* --- Parágrafos e Corpo do Texto --- */
+.sobre-p {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: clamp(1.02rem, 1.1vw, 1.15rem);
+    font-weight: 400;
+    line-height: var(--sobre-body-line-height, 1.75);
+    color: #2b170c;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    margin-top: 0;
+    margin-bottom: var(--sobre-p-margin-bottom, 1.25rem);
+}
+
+.sobre-lead-p {
+    margin-bottom: 0.95rem;
+    font-weight: 600;
+    color: #3e2110;
+}
+
+/* --- Citações e Destaques Editoriais --- */
+.sobre-destaque {
+    margin: 1.6rem 0;
+    padding: 1.15rem 1.45rem;
+    background: rgba(74, 39, 19, 0.04);
+    border-left: 4px solid #C49A45;
+    border-radius: 0 10px 10px 0;
+    box-sizing: border-box;
+}
+
+.sobre-destaque p {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: italic;
+    font-size: clamp(1.02rem, 1.1vw, 1.15rem);
+    font-weight: 400;
+    line-height: var(--sobre-body-line-height, 1.75);
+    color: #3e2110;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    margin: 0;
+}
+
+/* --- Lista Editorial dos Objetivos Institucionais --- */
+.sobre-objetivos-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.6rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.sobre-objetivo-item {
+    position: relative;
+    padding-left: 1.65rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: clamp(1.0rem, 1.08vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: #2b170c;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+.sobre-objetivo-item::before {
+    content: "";
+    position: absolute;
+    left: 0.25rem;
+    top: 0.65em;
+    width: 6px;
+    height: 6px;
+    background-color: #C49A45;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(196, 154, 69, 0.6);
+}
+
+/* --- Caixa de Reconhecimento Legal (Utilidade Pública) --- */
+.sobre-reconhecimento-box {
+    margin-top: 1.6rem;
+    padding: 1.1rem 1.35rem;
+    background: linear-gradient(135deg, rgba(196, 154, 69, 0.12), rgba(74, 39, 19, 0.05));
+    border: 1px solid rgba(196, 154, 69, 0.35);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.95rem;
+    box-sizing: border-box;
+}
+
+.sobre-reconhecimento-badge {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #4A2713;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F1E4C6;
+    box-shadow: 0 2px 8px rgba(74, 39, 19, 0.25);
+}
+
+.sobre-badge-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.sobre-reconhecimento-text {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: clamp(0.96rem, 1.05vw, 1.1rem);
+    font-weight: 600;
+    color: #4A2713;
+    line-height: 1.55;
+    margin: 0;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+/* ==========================================================================
+   Media Queries: Adaptação Editorial Responsiva (Mobile e Telas Menores)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .sobre-scrollbar {
+        right: 0.85rem;
+        top: 1.5rem;
+        bottom: 1.5rem;
+    }
+
+    .sobre-card-content {
+        padding-right: 1.75rem;
+    }
+
+    .sobre-editorial-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.85rem;
+    }
+
+    .sobre-marca-col {
+        position: static;
+        flex: 0 0 auto;
+        max-width: var(--sobre-marca-max-width-mobile, 200px);
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .sobre-marca-wrapper {
+        max-width: var(--sobre-marca-max-width-mobile, 200px);
+    }
+
+    .sobre-editorial-text {
+        width: 100%;
+    }
+
+    .sobre-editorial-heading {
+        margin-top: 1.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .sobre-scrollbar {
+        right: 0.45rem;
+        top: 1.25rem;
+        bottom: 1.25rem;
+        width: 18px;
+    }
+
+    .sobre-card-content {
+        padding-right: 1.25rem;
+    }
+
+    .sobre-marca-col {
+        max-width: 170px;
+    }
+
+    .sobre-marca-wrapper {
+        max-width: 170px;
+        padding: 0.4rem;
+    }
+
+    .sobre-destaque {
+        padding: 0.85rem 1rem;
+        margin: 1.25rem 0;
+    }
+
+    .sobre-reconhecimento-box {
+        padding: 0.85rem 1rem;
+        gap: 0.75rem;
+    }
+
+    .sobre-reconhecimento-badge {
+        width: 32px;
+        height: 32px;
+    }
+
+    .sobre-badge-icon {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+/* Telas com altura muito reduzida (paisagem / landscape) */
+@media (max-height: 520px) {
+    .pagina-sobre-nos {
+        overflow-y: auto;
+        height: auto;
+    }
+
+    #sobre-nos,
+    .sobre-section {
+        height: auto;
+        max-height: none;
+        min-height: 100vh;
+    }
+
+    .sobre-main-container {
+        height: auto;
+        min-height: 540px;
+    }
+
+    .sobrenos-card,
+    .sobre-card {
+        max-height: 480px;
+        min-height: 360px;
+    }
+}

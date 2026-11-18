@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="tudo/css/estilos.css">
     <link rel="stylesheet" href="tudo/css/eventos.css">
     <link rel="stylesheet" href="tudo/css/sobre-nos.css">
+    <script src="tudo/js/device-detect.js"></script>
 </head>
 
 <body class="pagina-sobre-nos">
@@ -32,6 +33,11 @@
             <div class="sobre-main-container">
                 <!-- Imagem de Fundo Completa em Proporção Nativa sem Cortes -->
                 <img class="sobre-bg-image" src="tudo/obts/qmos.png" alt="Casa Luanda - Sobre Nós" data-img="fundo">
+                <script>
+                    if (typeof window.isMobileDevice === 'function' && window.isMobileDevice() && (window.innerHeight > window.innerWidth)) {
+                        document.currentScript.previousElementSibling.src = 'tudo/obts/mb.qmos.png';
+                    }
+                </script>
 
                 <!-- Camada de Conteúdo -->
                 <div class="sobre-content">
@@ -145,6 +151,9 @@
     <script src="config/config.img.js"></script>
     <script>
         (function () {
+            const isMobileVert = typeof window.isMobileDevice === 'function' &&
+                window.isMobileDevice() &&
+                (window.innerHeight > window.innerWidth);
             const config = window.configImg || (typeof configImg !== 'undefined' ? configImg : null);
             const imagens = (config && config.paginaSobre) || (config && config.paginaInicial);
             if (!imagens) return;
@@ -153,7 +162,8 @@
                 const chave = img.getAttribute('data-img');
                 const dados = imagens[chave] || (config.paginaInicial && config.paginaInicial[chave]);
                 if (dados) {
-                    img.src = dados.caminho;
+                    const src = (isMobileVert && dados.caminhoMobile) ? dados.caminhoMobile : dados.caminho;
+                    img.src = src;
                     if (dados.alt) img.alt = dados.alt;
                     if (dados.link) {
                         img.style.cursor = 'pointer';
