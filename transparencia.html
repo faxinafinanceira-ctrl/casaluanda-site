@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Luanda - Transparência e Controle Social</title>
+    
+    <!-- Pré-conexão e Importação de Fontes Oficiais -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Roboto+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Rye&display=swap" rel="stylesheet">
+
+    <!-- Folhas de Estilo -->
+    <link rel="stylesheet" href="tudo/css/estilos.css">
+    <link rel="stylesheet" href="tudo/css/transparencia.css">
+</head>
+<body class="pagina-transparencia">
+
+    <main class="page-content">
+        <!-- Seção Principal com ID 'transparencia' -->
+        <section id="transparencia" class="transparencia-section">
+            
+            <!-- Cabeçalho Idêntico ao de 'Sobre Nós' e 'Eventos' -->
+            <header class="eventos-header">
+                <div class="header-logo">
+                    <img data-img="logo" src="tudo/obts/logo.png" alt="Logo Casa Luanda">
+                </div>
+                
+                <!-- Componente de Navegação Global -->
+                <nav-menu id="mainNav">
+                    <nav class="header-nav">
+                        <button class="nav-link" data-section="ultimos-eventos" onclick="window.aoClicarMenu('Eventos', 'ultimos-eventos')">Eventos</button>
+                        <button class="nav-link" data-section="sobre-nos" onclick="window.aoClicarMenu('Sobre nós', 'sobre-nos')">Sobre nós</button>
+                        <button class="nav-link" data-section="projetos" onclick="window.aoClicarMenu('Projetos', 'projetos')">Projetos</button>
+                        <button class="nav-link" data-section="agentes-culturais" onclick="window.aoClicarMenu('Agentes culturais', 'agentes-culturais')">Agentes culturais</button>
+                        <button class="nav-link" data-section="transparencia" style="display: none;" onclick="window.aoClicarMenu('Transparência', 'transparencia')">Transparência</button>
+                    </nav>
+                </nav-menu>
+            </header>
+
+            <!-- Container Único de Conteúdo -->
+            <div class="transparencia-container">
+                <!-- Título Centralizado com Efeito Luminoso Idêntico ao 'Sobre nós' -->
+                <h1 class="transparencia-title">Transparência</h1>
+
+                <!-- Wrapper Principal de Conteúdo Estruturado -->
+                <div class="transparencia-wrapper">
+
+                    <!-- =================================================================
+                         1. Seção de Apresentação e Marco Legal
+                         ================================================================= -->
+                    <section class="tp-card" id="marco-legal">
+                        <div class="tp-card-header">
+                            <div class="tp-section-heading">
+                                <h2 class="tp-section-title">Apresentação e Marco Legal</h2>
+                                <p class="tp-section-subtitle">Compromisso institucional com a transparência pública, rastreabilidade e integridade</p>
+                            </div>
+                            <span class="tp-pill tp-pill-success">
+                                <span class="tp-pill-indicator pulse"></span>
+                                Transparência Ativa
+                            </span>
+                        </div>
+
+                        <div class="tp-intro-text">
+                            <p class="tp-intro-p">
+                                A <strong>Casa Luanda Associação Afro-Cultural</strong> atua em estrita conformidade com a <strong>Lei Complementar Federal nº 210/2024</strong>, com a decisão do <strong>Supremo Tribunal Federal na ADPF 854</strong>, com o <strong>Marco Regulatório das Organizações da Sociedade Civil (Lei Federal nº 13.019/2014 — MROSC)</strong>, bem como com as diretrizes da <strong>Controladoria-Geral da União (CGU)</strong> e demais órgãos de controle.
+                            </p>
+                            
+                            <p class="tp-intro-p">
+                                Em cumprimento às normas vigentes e às orientações de transparência ativa, todas as informações relativas a recursos públicos recebidos, convênios, parcerias e emendas parlamentares são divulgadas com clareza, rastreabilidade e acesso público, em conformidade com a <strong>Lei de Acesso à Informação (Lei nº 12.527/2011)</strong> e demais dispositivos legais aplicáveis.
+                            </p>
+
+                            <div class="tp-intro-highlight">
+                                <p>
+                                    "Nosso compromisso institucional vai além da exigência legal: garantimos que os recursos públicos recebidos sejam aplicados estritamente conforme os planos de trabalho aprovados, com acompanhamento regular, prestação de contas detalhada e total sujeição aos controles internos e externos."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Grid de Fundamentação Jurídica -->
+                        <div class="tp-legal-grid">
+                            <article class="tp-legal-item">
+                                <div class="tp-legal-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                </div>
+                                <div class="tp-legal-info">
+                                    <span class="tp-legal-tag">Legislação Federal</span>
+                                    <h4 class="tp-legal-title">Lei Complementar nº 210/2024</h4>
+                                    <p class="tp-legal-desc">Normas de transparência, rastreabilidade, publicidade e governança para a destinação de recursos e emendas parlamentares federais.</p>
+                                </div>
+                            </article>
+
+                            <article class="tp-legal-item">
+                                <div class="tp-legal-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                                </div>
+                                <div class="tp-legal-info">
+                                    <span class="tp-legal-tag">Jurisprudência STF</span>
+                                    <h4 class="tp-legal-title">Decisão do STF na ADPF 854</h4>
+                                    <p class="tp-legal-desc">Determinações de publicidade ativa, rastreabilidade integral, identificação de beneficiários e conformidade republicana no repasse de verbas públicas.</p>
+                                </div>
+                            </article>
+
+                            <article class="tp-legal-item">
+                                <div class="tp-legal-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                </div>
+                                <div class="tp-legal-info">
+                                    <span class="tp-legal-tag">Marco Regulatório</span>
+                                    <h4 class="tp-legal-title">MROSC (Lei nº 13.019/2014)</h4>
+                                    <p class="tp-legal-desc">Regime jurídico das parcerias entre a administração pública e organizações da sociedade civil, com foco em resultados sociais e controle participativo.</p>
+                                </div>
+                            </article>
+
+                            <article class="tp-legal-item">
+                                <div class="tp-legal-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                </div>
+                                <div class="tp-legal-info">
+                                    <span class="tp-legal-tag">Acesso à Informação</span>
+                                    <h4 class="tp-legal-title">LAI (Lei Federal nº 12.527/2011)</h4>
+                                    <p class="tp-legal-desc">Garantia do direito constitucional de acesso a dados públicos e incentivo à prestação de contas espontânea à sociedade civil.</p>
+                                </div>
+                            </article>
+
+                            <article class="tp-legal-item">
+                                <div class="tp-legal-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                </div>
+                                <div class="tp-legal-info">
+                                    <span class="tp-legal-tag">Decretos e Fomento</span>
+                                    <h4 class="tp-legal-title">Decretos nº 8.726/16 e nº 11.453/23</h4>
+                                    <p class="tp-legal-desc">Regulamentação federal do MROSC e Novo Decreto de Fomento à Cultura, simplificando procedimentos e assegurando eficiência na gestão cultural.</p>
+                                </div>
+                            </article>
+
+                            <article class="tp-legal-item">
+                                <div class="tp-legal-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                </div>
+                                <div class="tp-legal-info">
+                                    <span class="tp-legal-tag">Controle Governamental</span>
+                                    <h4 class="tp-legal-title">Diretrizes CGU, PPA & LDO</h4>
+                                    <p class="tp-legal-desc">Em consonância com as orientações da CGU, Lei nº 14.802/2024 (PPA 2024-2027), Lei nº 15.321/2025 (LDO 2026), Decreto nº 93.872/1986 e Lei nº 8.313/1991 (FNC).</p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- =================================================================
+                         2. Painel Visual de Resumo do Instrumento Federal (Termo de Fomento)
+                         ================================================================= -->
+                    <section class="tp-card" id="painel-instrumento">
+                        <div class="tp-card-header">
+                            <div class="tp-section-heading">
+                                <span class="tp-section-badge">Dashboard Federal • MinC / SCDC</span>
+                                <h2 class="tp-section-title">Termo de Fomento nº 999049/2026</h2>
+                                <p class="tp-section-subtitle">Painel de dados do instrumento federal firmado com o Ministério da Cultura</p>
+                            </div>
+                            <div class="tp-header-badges">
+                                <span class="tp-pill tp-pill-gold">Transferegov nº 999049/2026</span>
+                                <span class="tp-pill tp-pill-success">
+                                    <span class="tp-pill-indicator pulse"></span>
+                                    Vigente
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Grid de Indicadores Rápidos (KPIs) -->
+                        <div class="tp-kpi-grid">
+                            <!-- 1. ÓRGÃO CONCEDENTE & REPRESENTAÇÃO -->
+                            <article class="tp-kpi-card">
+                                <div class="tp-kpi-header">
+                                    <span class="tp-kpi-label">Órgão Concedente &amp; Representação</span>
+                                    <svg class="tp-kpi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
+                                </div>
+                                <p class="tp-kpi-value mono" style="font-size: 1.15rem; line-height: 1.35;">União, por intermédio do Ministério da Cultura / Secretaria de Cidadania e Diversidade Cultural (MinC/SCDC), CNPJ nº 01.264.142/0001-29, Brasília/DF.</p>
+                                <p class="tp-kpi-sub">Representante legal: <strong>Márcia Helena Gonçalves Rollemberg</strong>, Secretária de Cidadania e Diversidade Cultural (Portaria nº 2.421 de 09/05/2023; matrícula nº 6243795).</p>
+                            </article>
+
+                            <!-- 2. ENTIDADE PARCEIRA & DIRIGENTE -->
+                            <article class="tp-kpi-card">
+                                <div class="tp-kpi-header">
+                                    <span class="tp-kpi-label">Entidade Parceira &amp; Dirigente</span>
+                                    <svg class="tp-kpi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                </div>
+                                <p class="tp-kpi-value mono" style="font-size: 1.15rem; line-height: 1.35;">Casa Luanda Associação Afro-Cultural (OSC), CNPJ nº 19.372.558/0001-26.</p>
+                                <p class="tp-kpi-sub">Sede: Av. Doutor Gastão Vidigal, 55, Zona 08, Maringá – PR, CEP: 87051-051. Dirigente máxima: <strong>Lais Azevedo Fialho</strong>, Presidente.</p>
+                            </article>
+
+                            <!-- 3. PARLAMENTAR & EMENDA -->
+                            <article class="tp-kpi-card">
+                                <div class="tp-kpi-header">
+                                    <span class="tp-kpi-label">Indicação &amp; Emenda Parlamentar</span>
+                                    <svg class="tp-kpi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                                </div>
+                                <p class="tp-kpi-value mono" style="font-size: 1.25rem;">Emenda Parlamentar nº 43200018</p>
+                                <p class="tp-kpi-sub">Parlamentar: <strong>Deputada Federal Carol Dartora</strong>.</p>
+                            </article>
+
+                            <!-- 4. DOTAÇÃO & EMPENHO -->
+                            <article class="tp-kpi-card">
+                                <div class="tp-kpi-header">
+                                    <span class="tp-kpi-label">Dotação Orçamentária &amp; Empenho</span>
+                                    <svg class="tp-kpi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                </div>
+                                <p class="tp-kpi-value mono" style="font-size: 1.2rem;">Nota de Empenho nº 2026NE000045 | UG: 340029</p>
+                                <p class="tp-kpi-sub">Ação Orçamentária: <strong>20ZF</strong> (Promoção e Fomento à Cultura Brasileira) • PTRES: 267191 • Elemento de Despesa: 33.50.41.</p>
+                            </article>
+
+                            <!-- 5. VALOR GLOBAL & REPASSE -->
+                            <article class="tp-kpi-card tp-kpi-card-highlight">
+                                <div class="tp-kpi-header">
+                                    <span class="tp-kpi-label">Valor Global &amp; Condições de Repasse</span>
+                                    <svg class="tp-kpi-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                </div>
+                                <p class="tp-kpi-value">R$ 100.000,00 <span style="font-size: 1.1rem; font-family: 'Roboto Condensed', sans-serif; font-weight: 400; color: var(--transparencia-color-muted);">(cem mil reais)</span></p>
+                                <p class="tp-kpi-sub">Liberação em <strong>01 (uma) única parcela</strong>. Conta Bancária Vinculada: Banco do Brasil (001), Agência 3284-0, Conta Corrente 723533.</p>
+                            </article>
+
+                            <!-- 6. VIGÊNCIA E ASSINATURA -->
+                            <article class="tp-kpi-card">
+                                <div class="tp-kpi-header">
+                                    <span class="tp-kpi-label">Vigência &amp; Formalização</span>
+                                    <svg class="tp-kpi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                </div>
+                                <p class="tp-kpi-value">12 (doze) meses</p>
+                                <p class="tp-kpi-sub">Contados a partir da última assinatura. Assinatura em 26 de agosto de 2026 (via SEI).</p>
+                            </article>
+
+                            <!-- 7. OBJETO PACTUADO -->
+                            <article class="tp-kpi-card">
+                                <div class="tp-kpi-header">
+                                    <span class="tp-kpi-label">Objeto Pactuado</span>
+                                    <svg class="tp-kpi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                </div>
+                                <p class="tp-kpi-value mono" style="font-size: 1.05rem; line-height: 1.45; font-weight: 500;">Realização de oficinas de Capoeira Angola, Maracatu, Bumba Meu Boi, Canto Popular e Percussão Nagô, promovidas pela Casa Luanda em Maringá, voltadas à promoção, preservação e difusão das expressões da cultura popular afro-brasileira.</p>
+                            </article>
+
+                            <!-- 8. AMPARO JURÍDICO (AGU/PF) -->
+                            <article class="tp-kpi-card">
+                                <div class="tp-kpi-header">
+                                    <span class="tp-kpi-label">Amparo Jurídico</span>
+                                    <svg class="tp-kpi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                </div>
+                                <p class="tp-kpi-value mono" style="font-size: 1.2rem;">Marco Regulatório MROSC e Legislação Correlata</p>
+                                <p class="tp-kpi-sub">Lei nº 13.019/2014, Decreto nº 8.726/2016, Lei nº 14.802/2024 (PPA), Lei nº 15.321/2025 (LDO), Decreto nº 93.872/1986, Lei nº 8.313/1991 (FNC) e Decreto nº 11.453/2023.</p>
+                            </article>
+
+                            <!-- 9. LOCAL DE EXECUÇÃO -->
+                            <article class="tp-kpi-card">
+                                <div class="tp-kpi-header">
+                                    <span class="tp-kpi-label">Local de Execução</span>
+                                    <svg class="tp-kpi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                </div>
+                                <p class="tp-kpi-value mono" style="font-size: 1.35rem;">Município de Maringá – PR</p>
+                                <p class="tp-kpi-sub">Sede da entidade: Avenida Doutor Gastão Vidigal, 55, Zona 08.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- =================================================================
+                         3. Identificação Institucional da Entidade Beneficiária
+                         ================================================================= -->
+                    <section class="tp-card" id="identificacao-institucional">
+                        <div class="tp-card-header">
+                            <div class="tp-section-heading">
+                                <span class="tp-section-badge">Dados Cadastrais da Proponente</span>
+                                <h2 class="tp-section-title">Identificação Institucional da Entidade</h2>
+                                <p class="tp-section-subtitle">Informações oficiais de registro da Organização da Sociedade Civil (OSC)</p>
+                            </div>
+                            <span class="tp-pill tp-pill-neutral">Cadastro Ativo na Receita Federal</span>
+                        </div>
+
+                        <div class="tp-inst-card-inner">
+                            <ul class="tp-inst-list">
+                                <li class="tp-inst-item">
+                                    <span class="tp-inst-label">Razão Social (Receita Federal)</span>
+                                    <span class="tp-inst-value">Casa Luanda Associação Afro-Cultural</span>
+                                </li>
+                                <li class="tp-inst-item">
+                                    <span class="tp-inst-label">CNPJ Oficial</span>
+                                    <span class="tp-inst-value">
+                                        19.372.558/0001-26
+                                        <button type="button" class="tp-copy-btn" data-copy="19.372.558/0001-26" title="Copiar CNPJ">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            Copiar CNPJ
+                                        </button>
+                                    </span>
+                                </li>
+                                <li class="tp-inst-item">
+                                    <span class="tp-inst-label">Dirigente Máxima / Representante Legal</span>
+                                    <span class="tp-inst-value">Lais Azevedo Fialho (Presidente)</span>
+                                </li>
+                                <li class="tp-inst-item">
+                                    <span class="tp-inst-label">Endereço Territorial da Sede</span>
+                                    <span class="tp-inst-value">Avenida Doutor Gastão Vidigal, 55 - ZONA 08 — Maringá - PR — CEP: 87051-051</span>
+                                </li>
+                            </ul>
+
+                            <div class="tp-inst-callout">
+                                <div class="tp-inst-seal">
+                                    <div class="tp-inst-seal-icon">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                    </div>
+                                    <div class="tp-inst-seal-text">
+                                        <h4>Regularidade Fiscal e Jurídica</h4>
+                                        <p>Entidade sem fins lucrativos plenamente habilitada nos sistemas federais (Transferegov, SICAF e Receita Federal).</p>
+                                    </div>
+                                </div>
+
+                                <ul class="tp-inst-list" style="margin-top: 0.5rem;">
+                                    <li class="tp-inst-item">
+                                        <span class="tp-inst-label">E-mail Oficial</span>
+                                        <span class="tp-inst-value"><a href="mailto:casaluandaafrocultural@gmail.com">casaluandaafrocultural@gmail.com</a></span>
+                                    </li>
+                                    <li class="tp-inst-item">
+                                        <span class="tp-inst-label">Telefone de Contato</span>
+                                        <span class="tp-inst-value"><a href="tel:+554499687871">(44) 9968-7871</a></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- =================================================================
+                         4. Repositório de Documentos e Prestação de Contas
+                         ================================================================= -->
+                    <section class="tp-card" id="repositorio-documentos">
+                        <div class="tp-card-header">
+                            <div class="tp-section-heading">
+                                <span class="tp-section-badge">Repositório Oficial de Arquivos</span>
+                                <h2 class="tp-section-title">Documentos e Prestação de Contas</h2>
+                                <p class="tp-section-subtitle">Consulte, filtre e baixe a documentação oficial do convênio federal</p>
+                            </div>
+                            <span class="tp-pill tp-pill-neutral" id="docsCountBadge">1 Documento Disponível</span>
+                        </div>
+
+                        <!-- Barra de Ferramentas com Filtros por Ano, Categoria e Busca -->
+                        <div class="tp-docs-toolbar">
+                            <div class="tp-docs-filters-row">
+                                <div class="tp-filter-group" id="yearFilterGroup">
+                                    <span class="tp-filter-label">Ano:</span>
+                                    <button type="button" class="tp-filter-btn is-active" data-year="todos">Todos</button>
+                                    <button type="button" class="tp-filter-btn" data-year="2026">2026</button>
+                                </div>
+
+                                <div class="tp-search-box">
+                                    <svg class="tp-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    <input type="text" id="docSearchInput" class="tp-search-input" placeholder="Buscar por título ou código..." aria-label="Buscar documentos de transparência">
+                                </div>
+                            </div>
+
+                            <div class="tp-filter-group" id="categoryFilterGroup">
+                                <span class="tp-filter-label">Categoria:</span>
+                                <button type="button" class="tp-filter-btn is-active" data-category="todos">Todos</button>
+                                <button type="button" class="tp-filter-btn" data-category="termo-de-fomento">Termo de Fomento</button>
+                                <button type="button" class="tp-filter-btn" data-category="plano-de-trabalho">Plano de Trabalho</button>
+                                <button type="button" class="tp-filter-btn" data-category="notas-de-empenho">Notas de Empenho</button>
+                                <button type="button" class="tp-filter-btn" data-category="relatorios-de-execucao">Relatórios de Execução</button>
+                                <button type="button" class="tp-filter-btn" data-category="prestacao-de-contas">Prestação de Contas</button>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Documentos Interativa -->
+                        <div class="tp-docs-list" id="docsList">
+                            <!-- Documento 1: Termo de Fomento -->
+                            <article class="tp-doc-item" data-category="termo-de-fomento" data-year="2026">
+                                <div class="tp-doc-icon-col">
+                                    <span>PDF</span>
+                                    <small>18 MB</small>
+                                </div>
+                                <div class="tp-doc-main">
+                                    <div class="tp-doc-meta-row">
+                                        <span class="tp-doc-category-badge">Termo de Fomento</span>
+                                        <span class="tp-doc-year-badge">Ano: 2026</span>
+                                        <span class="tp-pill tp-pill-success" style="font-size: 0.75rem; padding: 0.15rem 0.55rem;">Assinado &amp; Publicado</span>
+                                    </div>
+                                    <h4 class="tp-doc-title">Termo de Fomento nº 999049/2026 — MinC / SCDC e Casa Luanda</h4>
+                                    <p class="tp-doc-identifiers">
+                                        <span><strong>Transferegov:</strong> 999049/2026</span>
+                                        <span>•</span>
+                                        <span><strong>Processo SEI:</strong> 01400.007813/2026-28</span>
+                                        <span>•</span>
+                                        <span><strong>Assinatura:</strong> 26/08/2026</span>
+                                    </p>
+                                </div>
+                                <div class="tp-doc-actions">
+                                    <a href="tudo/obts/doc/Termo_de_Fomento_999049_2026_Casa_Luanda.pdf" target="_blank" rel="noopener noreferrer" class="tp-btn tp-btn-outline" title="Visualizar Termo de Fomento em nova aba">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                        Visualizar
+                                    </a>
+                                    <a href="tudo/obts/doc/Termo_de_Fomento_999049_2026_Casa_Luanda.pdf" download="Termo_de_Fomento_999049_2026_Casa_Luanda.pdf" class="tp-btn tp-btn-primary" title="Baixar Termo de Fomento em PDF">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                        Download
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Feedback de Nenhum Documento Encontrado -->
+                        <div class="tp-docs-empty" id="docsEmpty">
+                            <p>Nenhum documento encontrado para os filtros selecionados. Tente limpar os critérios de busca.</p>
+                        </div>
+                    </section>
+
+                    <!-- =================================================================
+                         Rodapé Institucional • Serviço de Informação ao Cidadão (SIC)
+                         ================================================================= -->
+                    <footer class="tp-card tp-sic-card" id="sic-transparencia">
+                        <div class="tp-sic-content" style="width: 100%; max-width: 700px; margin: 0 auto; text-align: center;">
+                            <h4 class="tp-sic-title">Serviço de Informação ao Cidadão (SIC)</h4>
+                            <p class="tp-sic-desc">Qualquer cidadão pode solicitar esclarecimentos ou informações públicas adicionais diretamente aos nossos canais oficiais de transparência ativa.</p>
+                            <a href="mailto:casaluandaafrocultural@gmail.com?subject=Transparência%20e%20Controle%20Social" class="tp-btn tp-btn-primary tp-sic-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                Solicitar Informação via E-mail
+                            </a>
+                        </div>
+                    </footer>
+
+                </div>
+                <!-- Fim de .transparencia-wrapper -->
+
+            </div>
+            <!-- Fim de .transparencia-container -->
+
+        </section>
+    </main>
+
+    <!-- Notificação Toast para Ações Rápidas (Cópia) -->
+    <div class="tp-toast" id="tpToast" role="alert" aria-live="polite">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <span id="tpToastText">Copiado para a área de transferência!</span>
+    </div>
+
+    <!-- Scripts de Configuração e Navegação -->
+    <script src="tudo/js/device-detect.js"></script>
+    <script src="tudo/js/nav-menu.js"></script>
+    <script src="tudo/js/transparencia.js"></script>
+</body>
+</html>
