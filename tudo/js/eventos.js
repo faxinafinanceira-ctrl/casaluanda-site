@@ -520,9 +520,12 @@ function aoClicarMenu(nome, sectionId) {
         } else if (targetId === 'sobre-nos') {
             window.location.href = 'sobre-nos.html';
             return;
+        } else if (targetId === 'transparencia') {
+            window.location.href = 'transparencia.html';
+            return;
         }
     }
-    // Para 'Projetos', 'Agentes culturais' e 'Transparência', mantém o comportamento de placeholder/stub
+    // Para 'Projetos' e 'Agentes culturais', mantém o comportamento de placeholder/stub
 }
 
 /**

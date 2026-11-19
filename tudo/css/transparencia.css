@@ -1,0 +1,1356 @@
+/* ==========================================================================
+   Transparência - Casa Luanda
+   Configuração de Fundo Escuro, Header e Título Centralizado
+   ========================================================================== */
+
+:root {
+    --header-bg-color: #4A2713;
+    --page-bg-color: #E9DDC9;
+    --text-primary-color: #F1E4C6;
+    --transparencia-title-color: #2b170c;
+    --header-logo-width: 80px;
+    --header-logo-height: 80px;
+
+    /* Variáveis do Módulo de Transparência Centralizado */
+    --transparencia-max-width: 1200px;
+    --transparencia-margin-multiplier: 2;
+    --transparencia-padding-x: 2rem;
+    --transparencia-accordion-duration: 350ms;
+    --transparencia-card-bg: #FFFFFF;
+    --transparencia-card-border: rgba(74, 39, 19, 0.12);
+    --transparencia-color-primary: #4A2713;
+    --transparencia-color-heading: #2B170C;
+    --transparencia-color-body: #332115;
+    --transparencia-color-muted: #6E5343;
+    --transparencia-color-gold: #C49A45;
+    --transparencia-color-green: #2B5E3B;
+    --transparencia-color-green-bg: rgba(43, 94, 59, 0.10);
+    --transparencia-color-green-border: rgba(43, 94, 59, 0.25);
+    --transparencia-radius-card: 18px;
+    --transparencia-radius-badge: 50px;
+    --transparencia-shadow-soft: 0 4px 18px rgba(74, 39, 19, 0.06);
+    --transparencia-shadow-hover: 0 8px 28px rgba(74, 39, 19, 0.12);
+}
+
+/* --- Reset e Fundo da Página (Proibido uso de fundo preto aqui) --- */
+html, body.pagina-transparencia {
+    background-color: var(--page-bg-color) !important;
+    color: var(--transparencia-color-body);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Roboto Condensed', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page-content {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Seção Principal --- */
+#transparencia,
+.transparencia-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--page-bg-color) !important;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+}
+
+/* --- Cabeçalho e Barra Superior --- */
+.eventos-header {
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    background-color: var(--header-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.header-logo img {
+    width: var(--header-logo-width, 80px);
+    height: var(--header-logo-height, 80px);
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Links de Navegação do Header --- */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    background: transparent;
+    border: none;
+    color: var(--text-primary-color);
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-decoration: none;
+    outline: none;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* O item da página atual deve permanecer oculto */
+.nav-link[data-section="transparencia"] {
+    display: none !important;
+}
+
+/* --- Container do Título e Área Útil --- */
+.transparencia-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    flex: 1 0 auto;
+    box-sizing: border-box;
+}
+
+/* --- Título 'Transparência' (Exclusivamente na cor #2b170c) --- */
+.transparencia-title {
+    flex-shrink: 0;
+    margin: var(--transparencia-title-margin-top, 2.5rem) 0 0 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    line-height: 1;
+    letter-spacing: var(--transparencia-title-letter-spacing, 0.015em);
+    color: var(--transparencia-title-color, #2b170c) !important;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: var(--transparencia-title-text-shadow, none);
+}
+
+/* ==========================================================================
+   Wrapper de Conteúdo da Transparência
+   Margem obrigatória: calc(var(--transparencia-title-margin-top, 2.5rem) * 2);
+   ========================================================================== */
+.transparencia-wrapper {
+    width: 100%;
+    max-width: var(--transparencia-max-width, 1200px);
+    margin-top: calc(var(--transparencia-title-margin-top, 2.5rem) * var(--transparencia-margin-multiplier, 2));
+    padding: 0 var(--transparencia-padding-x, 2rem) 5rem var(--transparencia-padding-x, 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Estilos Comuns de Cards, Badges e Tipografia Editorial
+   ========================================================================== */
+.tp-card {
+    background-color: var(--transparencia-card-bg);
+    border: 1px solid var(--transparencia-card-border);
+    border-radius: var(--transparencia-radius-card);
+    box-shadow: var(--transparencia-shadow-soft);
+    padding: 2.25rem;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tp-card:hover {
+    box-shadow: var(--transparencia-shadow-hover);
+}
+
+.tp-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(74, 39, 19, 0.10);
+}
+
+.tp-section-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.tp-section-badge {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--transparencia-color-primary);
+    background-color: rgba(74, 39, 19, 0.08);
+    border: 1px solid rgba(74, 39, 19, 0.16);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--transparencia-radius-badge);
+    width: fit-content;
+}
+
+.tp-section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.65rem, 2.4vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--transparencia-color-heading);
+    margin: 0;
+}
+
+.tp-section-subtitle {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--transparencia-color-muted);
+    margin: 0;
+}
+
+/* Badges de Status e Destaque */
+.tp-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--transparencia-radius-badge);
+    letter-spacing: 0.03em;
+}
+
+.tp-pill-success {
+    background-color: var(--transparencia-color-green-bg);
+    color: var(--transparencia-color-green);
+    border: 1px solid var(--transparencia-color-green-border);
+}
+
+.tp-pill-gold {
+    background-color: rgba(196, 154, 69, 0.12);
+    color: #8c6a21;
+    border: 1px solid rgba(196, 154, 69, 0.35);
+}
+
+.tp-pill-neutral {
+    background-color: rgba(74, 39, 19, 0.06);
+    color: var(--transparencia-color-primary);
+    border: 1px solid rgba(74, 39, 19, 0.15);
+}
+
+.tp-pill-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+    display: inline-block;
+}
+
+.tp-pill-indicator.pulse {
+    animation: tpPulse 2s infinite ease-in-out;
+}
+
+@keyframes tpPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+/* ==========================================================================
+   1. Seção de Apresentação e Marco Legal
+   ========================================================================== */
+.tp-intro-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    margin-bottom: 2rem;
+}
+
+.tp-intro-p {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: clamp(1.05rem, 1.15vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--transparencia-color-heading);
+    text-align: justify;
+    margin: 0;
+}
+
+.tp-intro-p strong {
+    font-weight: 600;
+    color: var(--transparencia-color-primary);
+}
+
+.tp-intro-highlight {
+    background: linear-gradient(135deg, rgba(74, 39, 19, 0.04) 0%, rgba(196, 154, 69, 0.06) 100%);
+    border-left: 4px solid var(--transparencia-color-gold);
+    border-radius: 0 12px 12px 0;
+    padding: 1.25rem 1.65rem;
+    box-sizing: border-box;
+}
+
+.tp-intro-highlight p {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--transparencia-color-heading);
+    margin: 0;
+}
+
+/* Grid de Legislação e Fundamentação Jurídica */
+.tp-legal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.tp-legal-item {
+    background-color: #FAF7F2;
+    border: 1px solid rgba(74, 39, 19, 0.12);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tp-legal-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(74, 39, 19, 0.28);
+    box-shadow: 0 4px 14px rgba(74, 39, 19, 0.08);
+}
+
+.tp-legal-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(74, 39, 19, 0.08);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--transparencia-color-primary);
+}
+
+.tp-legal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.tp-legal-tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--transparencia-color-gold);
+}
+
+.tp-legal-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--transparencia-color-heading);
+    margin: 0;
+}
+
+.tp-legal-desc {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: var(--transparencia-color-muted);
+    margin: 0;
+}
+
+/* Box de Resolução de Conflitos / AGU CCAF */
+.tp-conflict-box {
+    background-color: #FAF5EB;
+    border: 1px solid rgba(196, 154, 69, 0.35);
+    border-left: 5px solid var(--transparencia-color-primary);
+    border-radius: 12px;
+    padding: 1.35rem 1.5rem;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.tp-conflict-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background-color: rgba(74, 39, 19, 0.10);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--transparencia-color-primary);
+}
+
+.tp-conflict-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.tp-conflict-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--transparencia-color-heading);
+    margin: 0;
+}
+
+.tp-conflict-desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--transparencia-color-body);
+    margin: 0;
+}
+
+.tp-conflict-note {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--transparencia-color-muted);
+}
+
+/* ==========================================================================
+   2. Painel Visual de Resumo do Instrumento Federal (Termo de Fomento)
+   ========================================================================== */
+.tp-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.tp-kpi-card {
+    background-color: #FAF7F2;
+    border: 1px solid rgba(74, 39, 19, 0.12);
+    border-radius: 14px;
+    padding: 1.35rem 1.45rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.75rem;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.tp-kpi-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(74, 39, 19, 0.25);
+    box-shadow: 0 4px 14px rgba(74, 39, 19, 0.07);
+}
+
+.tp-kpi-card-highlight {
+    background: linear-gradient(145deg, #FAF4EB 0%, #F5ECDD 100%);
+    border: 1.5px solid rgba(196, 154, 69, 0.45);
+    box-shadow: 0 4px 16px rgba(196, 154, 69, 0.12);
+}
+
+.tp-kpi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tp-kpi-label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--transparencia-color-muted);
+    margin: 0;
+}
+
+.tp-kpi-icon {
+    color: var(--transparencia-color-primary);
+    opacity: 0.8;
+}
+
+.tp-kpi-value {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.85rem;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--transparencia-color-heading);
+    margin: 0;
+}
+
+.tp-kpi-value.mono {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.tp-kpi-sub {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--transparencia-color-muted);
+    margin: 0;
+}
+
+.tp-copy-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--transparencia-color-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    align-self: flex-start;
+}
+
+.tp-copy-btn:hover {
+    background-color: rgba(74, 39, 19, 0.08);
+    color: #1a0d06;
+}
+
+/* Accordion Sanfonado de Dados Orçamentários e Bancários */
+.tp-accordion {
+    border: 1px solid rgba(74, 39, 19, 0.15);
+    border-radius: 14px;
+    background-color: #FAF7F2;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.tp-accordion.is-open {
+    border-color: rgba(74, 39, 19, 0.3);
+}
+
+.tp-accordion-trigger {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    gap: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.tp-accordion-trigger:hover {
+    background-color: rgba(74, 39, 19, 0.04);
+}
+
+.tp-accordion-trigger:focus-visible {
+    outline: 2px solid var(--transparencia-color-primary);
+    outline-offset: -2px;
+}
+
+.tp-accordion-trigger-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.tp-accordion-heading {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--transparencia-color-heading);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.tp-accordion-desc {
+    font-size: 0.9rem;
+    color: var(--transparencia-color-muted);
+    margin: 0;
+}
+
+.tp-accordion-chevron {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: var(--transparencia-color-primary);
+    transition: transform var(--transparencia-accordion-duration, 350ms) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tp-accordion.is-open .tp-accordion-chevron {
+    transform: rotate(180deg);
+}
+
+.tp-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transparencia-accordion-duration, 350ms) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tp-accordion-inner {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(74, 39, 19, 0.10);
+    padding-top: 1.25rem;
+}
+
+/* Tabela e Grid Financeiro */
+.tp-financial-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tp-financial-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.tp-financial-table th,
+.tp-financial-table td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(74, 39, 19, 0.08);
+}
+
+.tp-financial-table th {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--transparencia-color-muted);
+    background-color: rgba(74, 39, 19, 0.04);
+    font-weight: 600;
+}
+
+.tp-financial-table th:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.tp-financial-table th:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.tp-financial-table td {
+    font-size: 0.98rem;
+    color: var(--transparencia-color-heading);
+}
+
+.tp-financial-table tr:last-child td {
+    border-bottom: none;
+}
+
+.tp-tag-code {
+    display: inline-block;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(74, 39, 19, 0.15);
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--transparencia-color-primary);
+}
+
+/* ==========================================================================
+   3. Detalhamento do Objeto Pactuado e Atividades Culturais
+   ========================================================================== */
+.tp-objeto-banner {
+    background: linear-gradient(135deg, rgba(74, 39, 19, 0.04) 0%, rgba(196, 154, 69, 0.08) 100%);
+    border: 1px solid rgba(196, 154, 69, 0.3);
+    border-radius: 14px;
+    padding: 1.6rem 1.85rem;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+}
+
+.tp-objeto-title-tag {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--transparencia-color-gold);
+    margin-bottom: 0.4rem;
+}
+
+.tp-objeto-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.25rem, 1.7vw, 1.6rem);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--transparencia-color-heading);
+    margin: 0 0 1rem 0;
+}
+
+.tp-objeto-meta-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(74, 39, 19, 0.10);
+}
+
+.tp-objeto-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--transparencia-color-muted);
+}
+
+.tp-objeto-meta-item strong {
+    color: var(--transparencia-color-heading);
+}
+
+/* Cards das Linguagens Culturais */
+.tp-culture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.25rem;
+}
+
+.tp-culture-card {
+    background-color: #FAF7F2;
+    border: 1px solid rgba(74, 39, 19, 0.12);
+    border-radius: 14px;
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tp-culture-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(74, 39, 19, 0.3);
+    box-shadow: 0 6px 18px rgba(74, 39, 19, 0.08);
+}
+
+.tp-culture-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: rgba(74, 39, 19, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--transparencia-color-primary);
+}
+
+.tp-culture-name {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--transparencia-color-heading);
+    margin: 0;
+}
+
+.tp-culture-desc {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: var(--transparencia-color-muted);
+    margin: 0;
+}
+
+/* ==========================================================================
+   4. Identificação Institucional da Entidade Beneficiária
+   ========================================================================== */
+.tp-inst-card-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.tp-inst-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tp-inst-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.tp-inst-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--transparencia-color-muted);
+}
+
+.tp-inst-value {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--transparencia-color-heading);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tp-inst-value a {
+    color: var(--transparencia-color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.tp-inst-value a:hover {
+    color: #1a0d06;
+    text-decoration: underline;
+}
+
+.tp-inst-callout {
+    background-color: #FAF7F2;
+    border: 1px solid rgba(74, 39, 19, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    box-sizing: border-box;
+}
+
+.tp-inst-seal {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tp-inst-seal-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: rgba(43, 94, 59, 0.12);
+    color: var(--transparencia-color-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tp-inst-seal-text h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--transparencia-color-heading);
+    margin: 0 0 0.2rem 0;
+}
+
+.tp-inst-seal-text p {
+    font-size: 0.88rem;
+    color: var(--transparencia-color-muted);
+    margin: 0;
+}
+
+/* ==========================================================================
+   5. Repositório de Documentos e Prestação de Contas
+   ========================================================================== */
+.tp-docs-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    background-color: #FAF7F2;
+    border: 1px solid rgba(74, 39, 19, 0.10);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.tp-docs-filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.tp-filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tp-filter-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--transparencia-color-muted);
+    margin-right: 0.25rem;
+}
+
+.tp-filter-btn {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(74, 39, 19, 0.16);
+    border-radius: var(--transparencia-radius-badge);
+    padding: 0.4rem 0.95rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--transparencia-color-heading);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tp-filter-btn:hover {
+    border-color: var(--transparencia-color-primary);
+    color: var(--transparencia-color-primary);
+}
+
+.tp-filter-btn.is-active {
+    background-color: var(--transparencia-color-primary);
+    border-color: var(--transparencia-color-primary);
+    color: #FFFFFF;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(74, 39, 19, 0.25);
+}
+
+.tp-search-box {
+    position: relative;
+    min-width: 260px;
+    flex-grow: 1;
+    max-width: 380px;
+}
+
+.tp-search-input {
+    width: 100%;
+    padding: 0.55rem 1rem 0.55rem 2.4rem;
+    border: 1px solid rgba(74, 39, 19, 0.20);
+    border-radius: var(--transparencia-radius-badge);
+    background-color: #FFFFFF;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.92rem;
+    color: var(--transparencia-color-heading);
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tp-search-input:focus {
+    border-color: var(--transparencia-color-primary);
+    box-shadow: 0 0 0 3px rgba(74, 39, 19, 0.12);
+}
+
+.tp-search-icon {
+    position: absolute;
+    left: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--transparencia-color-muted);
+    pointer-events: none;
+}
+
+/* Lista de Documentos */
+.tp-docs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tp-doc-item {
+    background-color: #FAF7F2;
+    border: 1px solid rgba(74, 39, 19, 0.12);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tp-doc-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(74, 39, 19, 0.28);
+    box-shadow: 0 4px 14px rgba(74, 39, 19, 0.08);
+}
+
+.tp-doc-icon-col {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background-color: rgba(196, 154, 69, 0.15);
+    border: 1px solid rgba(196, 154, 69, 0.3);
+    color: #8c6a21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+}
+
+.tp-doc-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.tp-doc-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tp-doc-category-badge {
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--transparencia-color-primary);
+    background-color: rgba(74, 39, 19, 0.08);
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+}
+
+.tp-doc-year-badge {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--transparencia-color-muted);
+}
+
+.tp-doc-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--transparencia-color-heading);
+    margin: 0;
+    line-height: 1.35;
+}
+
+.tp-doc-identifiers {
+    font-size: 0.88rem;
+    color: var(--transparencia-color-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.tp-doc-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.tp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.55rem 1.15rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.tp-btn-primary {
+    background-color: var(--transparencia-color-primary);
+    border: 1px solid var(--transparencia-color-primary);
+    color: #FFFFFF;
+}
+
+.tp-btn-primary:hover {
+    background-color: #381c0c;
+    border-color: #381c0c;
+    box-shadow: 0 4px 12px rgba(74, 39, 19, 0.25);
+}
+
+.tp-btn-outline {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(74, 39, 19, 0.25);
+    color: var(--transparencia-color-heading);
+}
+
+.tp-btn-outline:hover {
+    border-color: var(--transparencia-color-primary);
+    color: var(--transparencia-color-primary);
+    background-color: rgba(74, 39, 19, 0.04);
+}
+
+.tp-btn-disabled {
+    background-color: rgba(74, 39, 19, 0.05);
+    border: 1px solid rgba(74, 39, 19, 0.12);
+    color: var(--transparencia-color-muted);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.tp-docs-empty {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: #FAF7F2;
+    border: 1px dashed rgba(74, 39, 19, 0.2);
+    border-radius: 12px;
+    display: none;
+}
+
+.tp-docs-empty.is-visible {
+    display: block;
+}
+
+.tp-docs-empty p {
+    font-size: 1.05rem;
+    color: var(--transparencia-color-muted);
+    margin: 0;
+}
+
+/* ==========================================================================
+   Serviço de Informação ao Cidadão (SIC)
+   ========================================================================== */
+.tp-sic-card {
+    background-color: var(--transparencia-card-bg, #FFFFFF);
+    border: 1px solid var(--transparencia-card-border, rgba(74, 39, 19, 0.12));
+    border-radius: var(--transparencia-radius-card, 18px);
+    box-shadow: var(--transparencia-shadow-soft);
+    padding: 2.5rem 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.tp-sic-content {
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.tp-sic-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--transparencia-color-heading, #2B170C);
+    margin: 0;
+}
+
+.tp-sic-desc {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--transparencia-color-muted, #6E5343);
+    margin: 0 0 0.5rem 0;
+}
+
+.tp-sic-btn {
+    justify-content: center;
+    padding: 0.7rem 1.85rem;
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   Notificação Toast Flutuante (Feedback de Cópia)
+   ========================================================================== */
+.tp-toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--transparencia-color-primary);
+    color: #FFFFFF;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateY(15px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tp-toast.is-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   Responsividade: Desktop Médio, Tablets e Celulares
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .eventos-header {
+        padding: 0.75rem 1.5rem;
+    }
+
+    .transparencia-title {
+        margin-top: var(--transparencia-title-margin-top-tablet, 1.5rem);
+    }
+
+    .transparencia-wrapper {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        gap: 2rem;
+    }
+
+    .tp-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tp-inst-card-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .tp-footer-top {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tp-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tp-doc-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .tp-doc-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .tp-card {
+        padding: 1.5rem;
+    }
+
+    .tp-objeto-banner {
+        padding: 1.25rem;
+    }
+
+    .tp-docs-filters-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tp-search-box {
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .eventos-header {
+        padding: 0.6rem 1rem;
+    }
+
+    .header-logo img {
+        width: var(--header-logo-width-mobile, 60px);
+        height: var(--header-logo-height-mobile, 60px);
+    }
+
+    .header-nav {
+        gap: 0.75rem;
+    }
+
+    .nav-link {
+        font-size: 0.95rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    .transparencia-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-top: var(--transparencia-title-margin-top-mobile, 1.25rem);
+    }
+
+    .transparencia-wrapper {
+        padding-left: 0.85rem;
+        padding-right: 0.85rem;
+    }
+
+    .tp-card {
+        padding: 1.25rem 1rem;
+    }
+
+    .tp-legal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tp-culture-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tp-accordion-trigger {
+        padding: 1rem;
+    }
+
+    .tp-accordion-inner {
+        padding: 0 1rem 1rem 1rem;
+    }
+
+    .tp-footer-card {
+        padding: 1.25rem;
+    }
+}

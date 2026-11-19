@@ -125,5 +125,51 @@
       "_comentario_paragraphMarginBottomRem": "Espaçamento inferior uniforme em rem entre os parágrafos do texto (padrão: 1.25rem)",
       "paragraphMarginBottomRem": 1.25
     }
+  },
+  "transparencia": {
+    "title": {
+      "_comentario_marginTopRem": "Margem superior do título da página Transparência no desktop em rem (padrão: 2.5rem)",
+      "marginTopRem": 2.5,
+      "_comentario_marginTopTabletRem": "Margem superior do título da página Transparência em telas médias e tablets em rem (padrão: 1.5rem)",
+      "marginTopTabletRem": 1.5,
+      "_comentario_marginTopMobileRem": "Margem superior do título da página Transparência em celulares e telas pequenas em rem (padrão: 1.25rem)",
+      "marginTopMobileRem": 1.25,
+      "_comentario_glowEnabled": "Feature flag booleana: ativa (true) ou desativa (false) o efeito de sombra luminosa multi-camadas no título Transparência",
+      "glowEnabled": false,
+      "_comentario_glowIntensity": "Intensidade multiplicadora do brilho luminoso do título (1.0 = normal, 0.5 = suave, 0.0 = sem brilho)",
+      "glowIntensity": 1.0,
+      "_comentario_letterSpacingEm": "Espaçamento horizontal entre as letras do título Transparência (em unidades 'em', padrão: 0.015)",
+      "letterSpacingEm": 0.015
+    },
+    "layout": {
+      "_comentario_maxWidthPx": "Largura máxima do container de transparência no desktop em pixels (padrão: 1200px)",
+      "maxWidthPx": 1200,
+      "_comentario_marginTopMultiplier": "Multiplicador numérico aplicado sobre a margem superior do título para posicionar o container de transparência (padrão: 2)",
+      "marginTopMultiplier": 2,
+      "_comentario_paddingRem": "Espaçamento horizontal interno em rem nas laterais do container em desktop (padrão: 2.0rem)",
+      "paddingRem": 2.0,
+      "_comentario_paddingMobileRem": "Espaçamento horizontal interno em rem nas laterais do container em celulares e telas pequenas (padrão: 1.0rem)",
+      "paddingMobileRem": 1.0
+    },
+    "accordion": {
+      "_comentario_transitionDurationMs": "Tempo em milissegundos para a transição de abertura e fechamento da área sanfonada financeira (padrão: 350ms)",
+      "transitionDurationMs": 350,
+      "_comentario_startOpen": "Feature flag booleana: define se o acordeão financeiro inicia aberto (true) ou recolhido (false) por padrão",
+      "startOpen": false
+    },
+    "documents": {
+      "_comentario_defaultFilter": "Categoria padrão pré-selecionada no filtro de documentos do repositório (padrão: 'todos')",
+      "defaultFilter": "todos",
+      "_comentario_defaultYear": "Ano padrão pré-selecionado no filtro do repositório (padrão: 'todos')",
+      "defaultYear": "todos",
+      "_comentario_transitionDurationMs": "Duração em milissegundos da animação de filtro da listagem de documentos (padrão: 250ms)",
+      "transitionDurationMs": 250
+    },
+    "feedback": {
+      "_comentario_copyFeedbackDurationMs": "Tempo de exibição em milissegundos da notificação flutuante de sucesso ao copiar dados cadastrais ou bancários (padrão: 2200ms)",
+      "copyFeedbackDurationMs": 2200,
+      "_comentario_enableQuickCopy": "Feature flag booleana: habilita (true) ou desabilita (false) os botões de cópia rápida para CNPJ, processo e dados bancários",
+      "enableQuickCopy": true
+    }
   }
 }

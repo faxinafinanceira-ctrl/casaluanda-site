@@ -75,7 +75,9 @@ class NavMenu extends HTMLElement {
 }
 
 // Define o novo Custom Element nativo <nav-menu>
-customElements.define('nav-menu', NavMenu);
+if (!customElements.get('nav-menu')) {
+    customElements.define('nav-menu', NavMenu);
+}
 
 // Fallback para navegação global entre páginas se não houver manipulador específico carregado
 if (typeof window.aoClicarMenu !== 'function') {
@@ -83,7 +85,8 @@ if (typeof window.aoClicarMenu !== 'function') {
         const targetId = sectionId || (
             (nome === 'Sobre nós' || nome === 'Sobre nos') ? 'sobre-nos' :
                 (nome === 'Eventos' || nome === 'Últimos eventos') ? 'ultimos-eventos' :
-                    null
+                    (nome === 'Transparência' || nome === 'transparencia') ? 'transparencia' :
+                        null
         );
 
         if (targetId) {
@@ -98,6 +101,10 @@ if (typeof window.aoClicarMenu !== 'function') {
             }
             if (targetId === 'ultimos-eventos') {
                 window.location.href = 'index.html#ultimos-eventos';
+                return;
+            }
+            if (targetId === 'transparencia') {
+                window.location.href = 'transparencia.html';
                 return;
             }
         }
